@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<karaoke>
+  <page id="1">
+    <line id="1">
+      <word id="1">
+        <syllabe>
+          <start>00:00:19,330</start>
+          <end>00:00:19,590</end>
+          <text>We&#39;re</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:19,590</start>
+          <end>00:00:19,860</end>
+          <text>no</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:19,860</start>
+          <end>00:00:20,120</end>
+          <text>stran</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:20,120</start>
+          <end>00:00:20,380</end>
+          <text>gers</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:20,380</start>
+          <end>00:00:20,650</end>
+          <text>to</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:20,650</start>
+          <end>00:00:22,450</end>
+          <text>love</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="2">
+      <word id="1">
+        <syllabe>
+          <start>00:00:23,310</start>
+          <end>00:00:23,570</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:23,570</start>
+          <end>00:00:23,840</end>
+          <text>know</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:23,840</start>
+          <end>00:00:24,100</end>
+          <text>the</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:24,100</start>
+          <end>00:00:24,560</end>
+          <text>rules</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="2">
+    <line id="3">
+      <word id="1">
+        <syllabe>
+          <start>00:00:24,900</start>
+          <end>00:00:25,170</end>
+          <text>and</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:25,170</start>
+          <end>00:00:25,430</end>
+          <text>so</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:25,700</start>
+          <end>00:00:25,960</end>
+          <text>do</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:25,960</start>
+          <end>00:00:27,020</end>
+          <text>I</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="3">
+    <line id="4">
+      <word id="1">
+        <syllabe>
+          <start>00:00:27,560</start>
+          <end>00:00:27,820</end>
+          <text>A</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:27,820</start>
+          <end>00:00:28,090</end>
+          <text>full</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:28,090</start>
+          <end>00:00:28,350</end>
+          <text>com</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:28,350</start>
+          <end>00:00:28,620</end>
+          <text>mit</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:28,620</start>
+          <end>00:00:28,880</end>
+          <text>ment&#39;s</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="5">
+      <word id="1">
+        <syllabe>
+          <start>00:00:28,880</start>
+          <end>00:00:29,150</end>
+          <text>what</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:29,150</start>
+          <end>00:00:29,410</end>
+          <text>I&#39;m</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:29,680</start>
+          <end>00:00:29,940</end>
+          <text>thin</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:29,940</start>
+          <end>00:00:30,210</end>
+          <text>king</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:30,210</start>
+          <end>00:00:31,140</end>
+          <text>of</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="4">
+    <line id="6">
+      <word id="1">
+        <syllabe>
+          <start>00:00:31,800</start>
+          <end>00:00:32,070</end>
+          <text>You</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:32,070</start>
+          <end>00:00:32,330</end>
+          <text>would</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:32,330</start>
+          <end>00:00:32,600</end>
+          <text>n&#39;t</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:32,600</start>
+          <end>00:00:32,860</end>
+          <text>get</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:32,860</start>
+          <end>00:00:33,130</end>
+          <text>this</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:33,130</start>
+          <end>00:00:33,390</end>
+          <text>from</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="7">
+      <word id="1">
+        <syllabe>
+          <start>00:00:33,660</start>
+          <end>00:00:33,920</end>
+          <text>a</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:33,920</start>
+          <end>00:00:34,190</end>
+          <text>ny</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:34,190</start>
+          <end>00:00:34,450</end>
+          <text>o</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:34,450</start>
+          <end>00:00:34,720</end>
+          <text>ther</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:34,720</start>
+          <end>00:00:35,520</end>
+          <text>guy</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="5">
+    <line id="8">
+      <word id="1">
+        <syllabe>
+          <start>00:00:35,790</start>
+          <end>00:00:37,120</end>
+          <text>I</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:37,120</start>
+          <end>00:00:37,380</end>
+          <text>just</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:37,380</start>
+          <end>00:00:37,650</end>
+          <text>wa</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:37,650</start>
+          <end>00:00:37,910</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:37,910</start>
+          <end>00:00:38,180</end>
+          <text>tell</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:38,180</start>
+          <end>00:00:38,440</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="9">
+      <word id="1">
+        <syllabe>
+          <start>00:00:38,440</start>
+          <end>00:00:38,700</end>
+          <text>how</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:38,700</start>
+          <end>00:00:38,970</end>
+          <text>I&#39;m</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:38,970</start>
+          <end>00:00:39,500</end>
+          <text>fee</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:39,500</start>
+          <end>00:00:40,030</end>
+          <text>ling</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="6">
+    <line id="10">
+      <word id="1">
+        <syllabe>
+          <start>00:00:41,100</start>
+          <end>00:00:41,360</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:41,360</start>
+          <end>00:00:41,630</end>
+          <text>tta</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:41,630</start>
+          <end>00:00:41,890</end>
+          <text>make</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:41,890</start>
+          <end>00:00:42,160</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:42,420</start>
+          <end>00:00:42,680</end>
+          <text>un</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:42,680</start>
+          <end>00:00:42,950</end>
+          <text>der</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:42,950</start>
+          <end>00:00:43,480</end>
+          <text>stand</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="7">
+    <line id="11">
+      <word id="1">
+        <syllabe>
+          <start>00:00:43,740</start>
+          <end>00:00:43,880</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:43,880</start>
+          <end>00:00:44,010</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:44,010</start>
+          <end>00:00:44,140</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:44,140</start>
+          <end>00:00:44,270</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:44,270</start>
+          <end>00:00:44,670</end>
+          <text>give</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:44,670</start>
+          <end>00:00:45,070</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:45,070</start>
+          <end>00:00:45,330</end>
+          <text>up</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="12">
+      <word id="1">
+        <syllabe>
+          <start>00:00:45,870</start>
+          <end>00:00:46,000</end>
+          <text>ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:46,000</start>
+          <end>00:00:46,130</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:46,130</start>
+          <end>00:00:46,270</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:46,270</start>
+          <end>00:00:46,400</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:46,400</start>
+          <end>00:00:46,800</end>
+          <text>let</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:46,800</start>
+          <end>00:00:47,190</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:47,190</start>
+          <end>00:00:47,720</end>
+          <text>down</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="8">
+    <line id="13">
+      <word id="1">
+        <syllabe>
+          <start>00:00:48,000</start>
+          <end>00:00:48,130</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:48,130</start>
+          <end>00:00:48,260</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:48,260</start>
+          <end>00:00:48,390</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:48,390</start>
+          <end>00:00:48,530</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:48,530</start>
+          <end>00:00:49,060</end>
+          <text>run</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:49,060</start>
+          <end>00:00:49,320</end>
+          <text>a</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:49,320</start>
+          <end>00:00:49,850</end>
+          <text>round</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:49,850</start>
+          <end>00:00:50,110</end>
+          <text>and</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="14">
+      <word id="1">
+        <syllabe>
+          <start>00:00:50,390</start>
+          <end>00:00:50,650</end>
+          <text>de</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:50,650</start>
+          <end>00:00:51,180</end>
+          <text>sert</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:51,180</start>
+          <end>00:00:51,710</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="9">
+    <line id="15">
+      <word id="1">
+        <syllabe>
+          <start>00:00:52,250</start>
+          <end>00:00:52,380</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:52,380</start>
+          <end>00:00:52,520</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:52,520</start>
+          <end>00:00:52,650</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:52,650</start>
+          <end>00:00:52,780</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:52,780</start>
+          <end>00:00:53,180</end>
+          <text>make</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:53,180</start>
+          <end>00:00:53,570</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:53,570</start>
+          <end>00:00:54,100</end>
+          <text>cry</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="16">
+      <word id="1">
+        <syllabe>
+          <start>00:00:54,370</start>
+          <end>00:00:54,500</end>
+          <text>ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:54,500</start>
+          <end>00:00:54,630</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:54,630</start>
+          <end>00:00:54,770</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:54,770</start>
+          <end>00:00:54,900</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:54,900</start>
+          <end>00:00:55,430</end>
+          <text>say</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:55,430</start>
+          <end>00:00:55,690</end>
+          <text>good</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:55,690</start>
+          <end>00:00:56,220</end>
+          <text>bye</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+  <page id="10">
+    <line id="17">
+      <word id="1">
+        <syllabe>
+          <start>00:00:56,490</start>
+          <end>00:00:56,620</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:56,620</start>
+          <end>00:00:56,750</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:56,750</start>
+          <end>00:00:56,880</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:00:56,880</start>
+          <end>00:00:57,010</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:57,010</start>
+          <end>00:00:57,560</end>
+          <text>tell</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:00:57,560</start>
+          <end>00:00:57,830</end>
+          <text>a</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:00:57,830</start>
+          <end>00:00:58,620</end>
+          <text>lie</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="18">
+      <word id="1">
+        <syllabe>
+          <start>00:00:58,890</start>
+          <end>00:00:59,150</end>
+          <text>and</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:00:59,150</start>
+          <end>00:00:59,680</end>
+          <text>hurt</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:00:59,680</start>
+          <end>00:01:00,210</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
+</karaoke>
