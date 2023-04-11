@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-#include "Font.hpp"
+#include "Renderer.hpp"
 
 class Application
 {
@@ -22,7 +22,7 @@ private:
     bool m_is_initialized = false;
     SDL_Window* m_window = nullptr;
     SDL_GLContext m_context = nullptr;
-    Font m_font = Font();
+    Renderer m_renderer = Renderer();
     bool m_running = false;
 
     bool initialize_SDL();

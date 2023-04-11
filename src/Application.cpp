@@ -11,7 +11,8 @@ Application::Application() :
     m_is_initialized(false),
     m_window(nullptr),
     m_context(nullptr),
-    m_font(Font())
+    m_renderer(Renderer()),
+    m_running(false)
 {
     if (!initialize_SDL())
     {
@@ -21,11 +22,10 @@ Application::Application() :
     {
         return;
     }
-    if (!m_font.load("assets/font.xml", "assets/font.bmp"))
+    if (!m_renderer.initialize())
     {
         return;
     }
-
     m_is_initialized = true;
 }
 
@@ -72,10 +72,6 @@ bool Application::initialize_OpenGL()
         fputs("Couldn't initialize glad.\n", stderr);
         return false;
     }
-    printf("OpenGL version : %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
-
-    glClearColor(0.3f, 0.1f, 0.7f, 1.0f);
-
     return true;
 }
 
@@ -103,10 +99,7 @@ void Application::run()
         {
             break;
         }
-
-        glClear(GL_COLOR_BUFFER_BIT);
-        // Rendering karaoke here
-
+        m_renderer.render();
         SDL_GL_SwapWindow(m_window);
     }
 }
