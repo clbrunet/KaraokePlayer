@@ -18,6 +18,7 @@ public:
     Font(const char* xml_path, const char* image_path);
 
     bool load(const char* xml_path, const char* image_path);
+    const Image& image() const;
 
 private:
     pugi::xml_document m_doc = pugi::xml_document();

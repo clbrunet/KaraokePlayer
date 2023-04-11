@@ -5,6 +5,9 @@
 
 #include "Renderer.hpp"
 
+#define APPLICATION_WIDTH 800
+#define APPLICATION_HEIGHT 600
+
 class Application
 {
 public:

@@ -24,3 +24,8 @@ bool Font::load(const char* xml_path, const char* image_path)
     }
     return true;
 }
+
+const Image& Font::image() const
+{
+    return m_image;
+}

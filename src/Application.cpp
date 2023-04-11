@@ -44,7 +44,7 @@ bool Application::initialize_SDL()
 
     m_window = SDL_CreateWindow("Karaoke Player",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-            800, 600,
+            APPLICATION_WIDTH, APPLICATION_HEIGHT,
             SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);
     if (!m_window)
     {
@@ -72,6 +72,7 @@ bool Application::initialize_OpenGL()
         fputs("Couldn't initialize glad.\n", stderr);
         return false;
     }
+    glViewport(0, 0, APPLICATION_WIDTH, APPLICATION_HEIGHT);
     return true;
 }
 

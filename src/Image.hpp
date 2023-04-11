@@ -14,12 +14,13 @@ public:
     Image(const char* path);
 
     bool load(const char* path);
+    unsigned int texture() const;
 
 private:
     int m_width = -1;
     int m_height = -1;
-    int m_channelsCount = -1;
-    unsigned char* m_data = nullptr;
+    int m_channels_count = -1;
+    unsigned int m_texture = 0;
 };
 
 #endif
