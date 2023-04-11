@@ -69,6 +69,8 @@ bool Application::initialize_OpenGL()
     }
     printf("OpenGL version : %d.%d\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
 
+    glClearColor(0.3f, 0.1f, 0.7f, 1.0f);
+
     return true;
 }
 
