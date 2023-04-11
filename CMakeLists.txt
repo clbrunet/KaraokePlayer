@@ -27,7 +27,7 @@ CPMAddPackage(
 )
 if (stb_ADDED)
     add_library(stb INTERFACE)
-    target_include_directories(stb INTERFACE "${stb_SOURCE_DIR}/stb")
+    target_include_directories(stb INTERFACE "${stb_SOURCE_DIR}")
 
     add_library(stb_vorbis INTERFACE)
     target_link_libraries(stb_vorbis INTERFACE stb)

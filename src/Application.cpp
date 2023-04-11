@@ -10,13 +10,18 @@
 Application::Application() :
     m_is_initialized(false),
     m_window(nullptr),
-    m_context(nullptr)
+    m_context(nullptr),
+    m_font(Font())
 {
     if (!initialize_SDL())
     {
         return;
     }
     if (!initialize_OpenGL())
+    {
+        return;
+    }
+    if (!m_font.load("assets/font.xml", "assets/font.bmp"))
     {
         return;
     }
