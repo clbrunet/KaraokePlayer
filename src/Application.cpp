@@ -5,9 +5,9 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
-#include "Program.hpp"
+#include "Application.hpp"
 
-Program::Program() : m_is_initialized(false), m_window(nullptr)
+Application::Application() : m_is_initialized(false), m_window(nullptr)
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -51,20 +51,20 @@ Program::Program() : m_is_initialized(false), m_window(nullptr)
     m_is_initialized = true;
 }
 
-Program::~Program()
+Application::~Application()
 {
     SDL_DestroyWindow(m_window);
     SDL_Quit();
 }
 
-bool Program::is_initialized()
+bool Application::is_initialized()
 {
     return m_is_initialized;
 }
 
-void Program::run()
+void Application::run()
 {
-    assert(is_initialized() && "Check Program::is_initialized before calling Program::run");
+    assert(is_initialized() && "Check Application::is_initialized before calling Application::run");
 
     bool running = true;
     while (running)

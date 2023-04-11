@@ -1,18 +1,18 @@
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 
-#include "Program.hpp"
+#include "Application.hpp"
 
 int main(int argc, char** argv)
 {
     SDL_SetMainReady();
 
-    Program program;
-    if (!program.is_initialized())
+    Application application;
+    if (!application.is_initialized())
     {
         return -1;
     }
-    program.run();
+    application.run();
 
     return 0;
 }
