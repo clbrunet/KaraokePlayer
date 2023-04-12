@@ -3,14 +3,17 @@
 layout (location = 0) in vec4 position;
 layout (location = 1) in vec2 texture_coordinates;
 
-uniform vec2 bottom_left;
-uniform vec2 top_right;
+uniform mat4 model;
+
+uniform vec2 char_texture_bottom_left;
+uniform vec2 char_texture_top_right;
 
 out vec2 v_texture_coordinates;
 
 void main()
 {
-  gl_Position = position;
+  gl_Position = model * position;
 
-  v_texture_coordinates = mix(bottom_left, top_right, texture_coordinates);
+  v_texture_coordinates = mix(char_texture_bottom_left, char_texture_top_right,
+      texture_coordinates);
 }

@@ -2,6 +2,7 @@
 
 #include "Renderer.hpp"
 #include "Vec2.hpp"
+#include "Mat4.hpp"
 
 Renderer::~Renderer()
 {
@@ -37,10 +38,16 @@ bool Renderer::initialize()
         return false;
     }
     m_program.use();
+
     m_program.set_uniform_int("sampler", 0);
+
     Font::CharTextureCoordinates char_texture_coordinates = m_font.get_char_texture_coordinates(65);
-    m_program.set_uniform_vec2("bottom_left", char_texture_coordinates.bottom_left);
-    m_program.set_uniform_vec2("top_right", char_texture_coordinates.top_right);
+    m_program.set_uniform_vec2("char_texture_bottom_left", char_texture_coordinates.bottom_left);
+    m_program.set_uniform_vec2("char_texture_top_right", char_texture_coordinates.top_right);
+
+    Mat4 model = Mat4::identity().scale(2).translate(Vec2(0.7, 0.4));
+    m_program.set_uniform_mat4("model", model);
+
     return true;
 }
 

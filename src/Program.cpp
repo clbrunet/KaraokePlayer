@@ -6,6 +6,7 @@
 
 #include "Program.hpp"
 #include "Vec2.hpp"
+#include "Mat4.hpp"
 
 Program::~Program()
 {
@@ -88,5 +89,10 @@ void Program::set_uniform_int(const char* location, int i)
 
 void Program::set_uniform_vec2(const char* location, Vec2 vec2)
 {
-	glUniform2fv(glGetUniformLocation(m_program, location), 1, vec2.array);
+    glUniform2fv(glGetUniformLocation(m_program, location), 1, vec2.array);
+}
+
+void Program::set_uniform_mat4(const char* location, const Mat4& mat4)
+{
+    glUniformMatrix4fv(glGetUniformLocation(m_program, location), 1, GL_TRUE, (float*)mat4.array);
 }
