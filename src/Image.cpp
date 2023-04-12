@@ -21,8 +21,8 @@ bool Image::load(const char* path)
     glGenTextures(1, &m_texture);
     glBindTexture(GL_TEXTURE_2D, m_texture);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(path, &m_width, &m_height, &m_channels_count, 0);
@@ -51,6 +51,16 @@ bool Image::load(const char* path)
     stbi_image_free(data);
     glGenerateMipmap(GL_TEXTURE_2D);
     return true;
+}
+
+int Image::width() const
+{
+    return m_width;
+}
+
+int Image::height() const
+{
+    return m_height;
 }
 
 unsigned int Image::texture() const

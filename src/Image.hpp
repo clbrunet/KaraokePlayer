@@ -14,6 +14,8 @@ public:
     Image(const char* path);
 
     bool load(const char* path);
+    int width() const;
+    int height() const;
     unsigned int texture() const;
 
 private:

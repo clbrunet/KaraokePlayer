@@ -1,6 +1,7 @@
 #include <glad/gl.h>
 
 #include "Renderer.hpp"
+#include "Vec2.hpp"
 
 Renderer::~Renderer()
 {
@@ -37,6 +38,9 @@ bool Renderer::initialize()
     }
     m_program.use();
     m_program.set_uniform_int("sampler", 0);
+    Font::CharTextureCoordinates char_texture_coordinates = m_font.get_char_texture_coordinates(65);
+    m_program.set_uniform_vec2("bottom_left", char_texture_coordinates.bottom_left);
+    m_program.set_uniform_vec2("top_right", char_texture_coordinates.top_right);
     return true;
 }
 

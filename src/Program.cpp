@@ -5,6 +5,7 @@
 #include <glad/gl.h>
 
 #include "Program.hpp"
+#include "Vec2.hpp"
 
 Program::~Program()
 {
@@ -83,4 +84,9 @@ void Program::use() const
 void Program::set_uniform_int(const char* location, int i)
 {
     glUniform1i(glGetUniformLocation(m_program, location), i);
+}
+
+void Program::set_uniform_vec2(const char* location, Vec2 vec2)
+{
+	glUniform2fv(glGetUniformLocation(m_program, location), 1, vec2.array);
 }
