@@ -1,6 +1,7 @@
 #ifndef KARAOKE_SYLLABE_HPP
 #define KARAOKE_SYLLABE_HPP
 
+#include <cstdint>
 #include <vector>
 
 #include "Letter.hpp"
@@ -23,8 +24,12 @@ public:
     const Mat4& model() const;
 
 private:
+    float m_start_ms;
+    float m_end_ms;
     std::vector<Letter> m_letters;
     Mat4 m_model;
+
+    uint64_t parse_ms_text(const std::string& text) const;
 };
 
 #endif
