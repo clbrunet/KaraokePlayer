@@ -26,7 +26,7 @@ public:
     ~Renderer();
 
     bool initialize();
-    void render(const Font& font, const Page& page) const;
+    void render(const Font& font, const Page& page, const Mat4& font_scale) const;
 
 private:
     unsigned int m_vertex_array = 0;
@@ -42,8 +42,8 @@ private:
     };
     Program m_program = Program();
 
-    void render_page(const Page& page) const;
-    void render_line(const Line& line) const;
+    void render_page(const Page& page, const Mat4& font_scale) const;
+    void render_line(const Line& line, const Mat4& font_scale) const;
     void render_word(const Word& word, const Mat4& line_model) const;
     void render_syllabe(const Syllabe& syllabe, const Mat4& word_model) const;
     void render_letter(const Letter& letter, const Mat4& syllabe_model) const;

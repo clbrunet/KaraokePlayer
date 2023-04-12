@@ -31,6 +31,7 @@ private:
     SDL_GLContext m_context = nullptr;
     Renderer m_renderer = Renderer();
     Font m_font = Font();
+    Mat4 m_font_scale = Mat4::identity();
     Song m_song = Song();
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;

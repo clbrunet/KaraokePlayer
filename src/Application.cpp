@@ -13,6 +13,7 @@ Application::Application() :
     m_context(nullptr),
     m_renderer(Renderer()),
     m_font(Font()),
+    m_font_scale(Mat4()),
     m_song(Song()),
     m_pages_iterator(std::vector<Page>::const_iterator()),
     m_running(false)
@@ -33,6 +34,7 @@ Application::Application() :
     {
         return;
     }
+    m_font_scale = Mat4::identity().scale(1.5f);
     if (!m_song.load("assets/song.xml", "assets/song.ogg", m_font))
     {
         return;
@@ -113,7 +115,7 @@ void Application::run()
         {
             break;
         }
-        m_renderer.render(m_font, *m_pages_iterator);
+        m_renderer.render(m_font, *m_pages_iterator, m_font_scale);
         SDL_GL_SwapWindow(m_window);
     }
 }

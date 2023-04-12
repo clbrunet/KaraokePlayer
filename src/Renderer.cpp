@@ -44,7 +44,7 @@ bool Renderer::initialize()
     return true;
 }
 
-void Renderer::render(const Font& font, const Page& page) const
+void Renderer::render(const Font& font, const Page& page, const Mat4& font_scale) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -52,22 +52,22 @@ void Renderer::render(const Font& font, const Page& page) const
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font.image().texture());
     glBindVertexArray(m_vertex_array);
-    render_page(page);
+    render_page(page, font_scale);
 }
 
-void Renderer::render_page(const Page& page) const
+void Renderer::render_page(const Page& page, const Mat4& font_scale) const
 {
     for (const Line& line : page.lines())
     {
-        render_line(line);
+        render_line(line, font_scale);
     }
 }
 
-void Renderer::render_line(const Line& line) const
+void Renderer::render_line(const Line& line, const Mat4& font_scale) const
 {
     for (const Word& word : line.words())
     {
-        render_word(word, line.model());
+        render_word(word, font_scale * line.model());
     }
 }
 
