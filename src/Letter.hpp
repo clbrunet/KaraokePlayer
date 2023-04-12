@@ -14,9 +14,7 @@ public:
     Letter &operator=(const Letter &) = default;
     ~Letter() = default;
 
-    Letter(const Font& font, unsigned char c);
-
-    void set_model(float position);
+    Letter(const Font& font, unsigned char c, Vec2 translation);
 
     Vec2 texture_bottom_left() const;
     Vec2 texture_top_right() const;

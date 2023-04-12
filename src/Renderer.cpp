@@ -89,8 +89,8 @@ void Renderer::render_syllabe(const Syllabe& syllabe, const Mat4& word_model) co
 
 void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) const
 {
-    m_program.set_uniform_vec2("char_texture_bottom_left", letter.bottom_left());
-    m_program.set_uniform_vec2("char_texture_top_right", letter.top_right());
+    m_program.set_uniform_vec2("char_texture_bottom_left", letter.texture_bottom_left());
+    m_program.set_uniform_vec2("char_texture_top_right", letter.texture_top_right());
     m_program.set_uniform_mat4("model", syllabe_model * letter.model());
     glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
 }
