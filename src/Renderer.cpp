@@ -1,9 +1,14 @@
+#include <iostream>
+
 #include <glad/gl.h>
 
-#include "Letter.hpp"
 #include "Renderer.hpp"
 #include "Vec2.hpp"
 #include "Mat4.hpp"
+#include "karaoke/Letter.hpp"
+#include "karaoke/Page.hpp"
+#include "karaoke/Syllabe.hpp"
+#include "karaoke/Word.hpp"
 
 Renderer::~Renderer()
 {
@@ -39,7 +44,7 @@ bool Renderer::initialize()
     return true;
 }
 
-void Renderer::render(const Font& font, const std::vector<Letter>& letters)
+void Renderer::render(const Font& font, const Page& page) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -47,11 +52,45 @@ void Renderer::render(const Font& font, const std::vector<Letter>& letters)
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font.image().texture());
     glBindVertexArray(m_vertex_array);
-    for (const Letter& letter : letters)
+    render_page(page);
+}
+
+void Renderer::render_page(const Page& page) const
+{
+    for (const Line& line : page.lines())
     {
-        m_program.set_uniform_vec2("char_texture_bottom_left", letter.bottom_left());
-        m_program.set_uniform_vec2("char_texture_top_right", letter.top_right());
-        m_program.set_uniform_mat4("model", letter.model());
-        glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
+        render_line(line);
     }
+}
+
+void Renderer::render_line(const Line& line) const
+{
+    for (const Word& word : line.words())
+    {
+        render_word(word, line.model());
+    }
+}
+
+void Renderer::render_word(const Word& word, const Mat4& line_model) const
+{
+    for (const Syllabe& syllabe : word.syllabes())
+    {
+        render_syllabe(syllabe, line_model * word.model());
+    }
+}
+
+void Renderer::render_syllabe(const Syllabe& syllabe, const Mat4& word_model) const
+{
+    for (const Letter& letter : syllabe.letters())
+    {
+        render_letter(letter, word_model * syllabe.model());
+    }
+}
+
+void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) const
+{
+    m_program.set_uniform_vec2("char_texture_bottom_left", letter.bottom_left());
+    m_program.set_uniform_vec2("char_texture_top_right", letter.top_right());
+    m_program.set_uniform_mat4("model", syllabe_model * letter.model());
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
 }

@@ -19,9 +19,9 @@ public:
     bool initialize(const char* vertex_shader_path, const char* fragment_shader_path);
     void use() const;
 
-    void set_uniform_int(const char* location, int i);
-    void set_uniform_vec2(const char* location, Vec2 vec2);
-    void set_uniform_mat4(const char* location, const Mat4& mat4);
+    void set_uniform_int(const char* location, int i) const;
+    void set_uniform_vec2(const char* location, Vec2 vec2) const;
+    void set_uniform_mat4(const char* location, const Mat4& mat4) const;
 
 private:
     unsigned int m_program = 0;

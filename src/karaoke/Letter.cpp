@@ -1,10 +1,17 @@
-#include "Letter.hpp"
+#include <iostream>
+
+#include "karaoke/Letter.hpp"
 #include "Renderer.hpp"
 
-Letter::Letter(const Font& font, unsigned char c, Vec2 translation) :
+Letter::Letter(const Font& font, unsigned char c) :
     m_char_texture_coordinates(font.get_char_texture_coordinates(c)),
-    m_model(Mat4::identity().scale(LETTERS_SCALE_FACTOR).translate(translation))
+    m_model(Mat4::identity())
 {
+}
+
+void Letter::set_model(float position)
+{
+    m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 Vec2 Letter::bottom_left() const

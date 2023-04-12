@@ -6,8 +6,8 @@
 #include <SDL.h>
 
 #include "Renderer.hpp"
-#include "Letter.hpp"
-#include "Song.hpp"
+#include "karaoke/Letter.hpp"
+#include "karaoke/Song.hpp"
 
 #define APPLICATION_WIDTH 800
 #define APPLICATION_HEIGHT 600
@@ -32,8 +32,8 @@ private:
     Renderer m_renderer = Renderer();
     Font m_font = Font();
     Song m_song = Song();
+    std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
-    std::vector<Letter> m_letters = std::vector<Letter>();
 
     bool initialize_SDL();
     bool initialize_OpenGL();

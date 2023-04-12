@@ -14,8 +14,8 @@ Application::Application() :
     m_renderer(Renderer()),
     m_font(Font()),
     m_song(Song()),
-    m_running(false),
-    m_letters(std::vector<Letter>())
+    m_pages_iterator(std::vector<Page>::const_iterator()),
+    m_running(false)
 {
     if (!initialize_SDL())
     {
@@ -33,14 +33,12 @@ Application::Application() :
     {
         return;
     }
-    if (!m_song.load("assets/song.xml", "assets/song.ogg"))
+    if (!m_song.load("assets/song.xml", "assets/song.ogg", m_font))
     {
         return;
     }
-    m_letters.push_back(Letter(m_font, 65, Vec2(-0.3, 0.1)));
-    m_letters.push_back(Letter(m_font, 230, Vec2(-0.1, -0.1)));
-    m_letters.push_back(Letter(m_font, 32, Vec2(0.1, 0.1)));
-    m_letters.push_back(Letter(m_font, 87, Vec2(0.3, -0.1)));
+    m_pages_iterator = m_song.pages().cbegin();
+
     m_is_initialized = true;
 }
 
@@ -115,7 +113,7 @@ void Application::run()
         {
             break;
         }
-        m_renderer.render(m_font, m_letters);
+        m_renderer.render(m_font, *m_pages_iterator);
         SDL_GL_SwapWindow(m_window);
     }
 }
