@@ -26,6 +26,14 @@ Application::Application() :
     {
         return;
     }
+    if (!m_font.load("assets/font.xml", "assets/font.bmp"))
+    {
+        return;
+    }
+    m_letters.push_back(Letter(m_font, 65, Vec2(-0.3, 0.1)));
+    m_letters.push_back(Letter(m_font, 230, Vec2(-0.1, -0.1)));
+    m_letters.push_back(Letter(m_font, 32, Vec2(0.1, 0.1)));
+    m_letters.push_back(Letter(m_font, 87, Vec2(0.3, -0.1)));
     m_is_initialized = true;
 }
 
@@ -100,7 +108,7 @@ void Application::run()
         {
             break;
         }
-        m_renderer.render();
+        m_renderer.render(m_font, m_letters);
         SDL_GL_SwapWindow(m_window);
     }
 }

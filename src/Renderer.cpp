@@ -1,5 +1,6 @@
 #include <glad/gl.h>
 
+#include "Letter.hpp"
 #include "Renderer.hpp"
 #include "Vec2.hpp"
 #include "Mat4.hpp"
@@ -33,31 +34,24 @@ bool Renderer::initialize()
     {
         return false;
     }
-    if (!m_font.load("assets/font.xml", "assets/font.bmp"))
-    {
-        return false;
-    }
     m_program.use();
-
     m_program.set_uniform_int("sampler", 0);
-
-    Font::CharTextureCoordinates char_texture_coordinates = m_font.get_char_texture_coordinates(65);
-    m_program.set_uniform_vec2("char_texture_bottom_left", char_texture_coordinates.bottom_left);
-    m_program.set_uniform_vec2("char_texture_top_right", char_texture_coordinates.top_right);
-
-    Mat4 model = Mat4::identity().scale(2).translate(Vec2(0.7, 0.4));
-    m_program.set_uniform_mat4("model", model);
-
     return true;
 }
 
-void Renderer::render() const
+void Renderer::render(const Font& font, const std::vector<Letter>& letters)
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
     m_program.use();
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_font.image().texture());
+    glBindTexture(GL_TEXTURE_2D, font.image().texture());
     glBindVertexArray(m_vertex_array);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
+    for (const Letter& letter : letters)
+    {
+        m_program.set_uniform_vec2("char_texture_bottom_left", letter.bottom_left());
+        m_program.set_uniform_vec2("char_texture_top_right", letter.top_right());
+        m_program.set_uniform_mat4("model", letter.model());
+        glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
+    }
 }

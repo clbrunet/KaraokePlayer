@@ -1,9 +1,12 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <vector>
+
 #include <SDL.h>
 
 #include "Renderer.hpp"
+#include "Letter.hpp"
 
 #define APPLICATION_WIDTH 800
 #define APPLICATION_HEIGHT 600
@@ -26,7 +29,9 @@ private:
     SDL_Window* m_window = nullptr;
     SDL_GLContext m_context = nullptr;
     Renderer m_renderer = Renderer();
+    Font m_font = Font();
     bool m_running = false;
+    std::vector<Letter> m_letters = std::vector<Letter>();
 
     bool initialize_SDL();
     bool initialize_OpenGL();
