@@ -12,7 +12,10 @@ Application::Application() :
     m_window(nullptr),
     m_context(nullptr),
     m_renderer(Renderer()),
-    m_running(false)
+    m_font(Font()),
+    m_song(Song()),
+    m_running(false),
+    m_letters(std::vector<Letter>())
 {
     if (!initialize_SDL())
     {
@@ -27,6 +30,10 @@ Application::Application() :
         return;
     }
     if (!m_font.load("assets/font.xml", "assets/font.bmp"))
+    {
+        return;
+    }
+    if (!m_song.load("assets/song.xml", "assets/song.ogg"))
     {
         return;
     }

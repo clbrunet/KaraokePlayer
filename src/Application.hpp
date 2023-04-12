@@ -7,6 +7,7 @@
 
 #include "Renderer.hpp"
 #include "Letter.hpp"
+#include "Song.hpp"
 
 #define APPLICATION_WIDTH 800
 #define APPLICATION_HEIGHT 600
@@ -30,6 +31,7 @@ private:
     SDL_GLContext m_context = nullptr;
     Renderer m_renderer = Renderer();
     Font m_font = Font();
+    Song m_song = Song();
     bool m_running = false;
     std::vector<Letter> m_letters = std::vector<Letter>();
 
