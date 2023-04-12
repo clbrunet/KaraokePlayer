@@ -15,7 +15,7 @@ public:
 
     bool initialize(const char* vertex_shader_path, const char* fragment_shader_path);
     void use() const;
-    unsigned int get() const;
+    void set_uniform_int(const char* location, int i);
 
 private:
     unsigned int m_program = 0;

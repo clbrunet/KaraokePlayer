@@ -31,14 +31,12 @@ bool Renderer::initialize()
     {
         return false;
     }
-    m_program.use();
-
     if (!m_font.load("assets/font.xml", "assets/font.bmp"))
     {
         return false;
     }
-    int sampler = glGetUniformLocation(m_program.get(), "sampler");
-    glUniform1i(sampler, 0);
+    m_program.use();
+    m_program.set_uniform_int("sampler", 0);
     return true;
 }
 

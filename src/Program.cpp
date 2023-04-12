@@ -80,7 +80,7 @@ void Program::use() const
     glUseProgram(m_program);
 }
 
-unsigned int Program::get() const
+void Program::set_uniform_int(const char* location, int i)
 {
-    return m_program;
+    glUniform1i(glGetUniformLocation(m_program, location), i);
 }
