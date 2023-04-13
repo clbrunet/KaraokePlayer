@@ -31,7 +31,6 @@ bool Image::load(const char* path)
         std::cerr << "Coundl't load the image '" << path << "'" << std::endl;
         return false;
     }
-
     if (m_channels_count != 3 && m_channels_count != 4)
     {
         stbi_image_free(data);

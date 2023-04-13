@@ -31,6 +31,8 @@ public:
 private:
     pugi::xml_document m_doc = pugi::xml_document();
     Image m_image = Image();
+
+    pugi::xml_node get_char_xml_node(unsigned char c) const;
 };
 
 #endif
