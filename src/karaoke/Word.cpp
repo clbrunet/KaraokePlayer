@@ -45,3 +45,12 @@ const Mat4& Word::model() const
 {
     return m_model;
 }
+
+float Word::get_end_ms() const
+{
+    if (m_syllabes.size() == 0)
+    {
+        return 0.0f;
+    }
+    return m_syllabes.back().get_end_ms();
+}

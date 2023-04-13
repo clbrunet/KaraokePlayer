@@ -22,6 +22,7 @@ public:
 
     const std::vector<Letter>& letters() const;
     const Mat4& model() const;
+    float get_end_ms() const;
 
 private:
     float m_start_ms;

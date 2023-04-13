@@ -27,3 +27,12 @@ const std::vector<Line>& Page::lines() const
 {
     return m_lines;
 }
+
+float Page::get_end_ms() const
+{
+    if (m_lines.size() == 0)
+    {
+        return 0.0f;
+    }
+    return m_lines.back().get_end_ms();
+}

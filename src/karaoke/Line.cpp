@@ -49,3 +49,12 @@ const Mat4& Line::model() const
 {
     return m_model;
 }
+
+float Line::get_end_ms() const
+{
+    if (m_words.size() == 0)
+    {
+        return 0.0f;
+    }
+    return m_words.back().get_end_ms();
+}

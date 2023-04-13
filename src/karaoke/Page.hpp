@@ -20,6 +20,7 @@ public:
     void set_models();
 
     const std::vector<Line>& lines() const;
+    float get_end_ms() const;
 
 private:
     std::vector<Line> m_lines;

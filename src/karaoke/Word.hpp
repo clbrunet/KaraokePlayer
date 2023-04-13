@@ -22,6 +22,7 @@ public:
     const std::vector<Syllabe>& syllabes() const;
     int letters_count() const;
     const Mat4& model() const;
+    float get_end_ms() const;
 
 private:
     std::vector<Syllabe> m_syllabes;

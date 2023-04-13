@@ -38,6 +38,11 @@ const Mat4& Syllabe::model() const
     return m_model;
 }
 
+float Syllabe::get_end_ms() const
+{
+    return m_end_ms;
+}
+
 uint64_t Syllabe::parse_ms_text(const std::string& text) const
 {
     std::istringstream isstream(text);
