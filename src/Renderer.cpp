@@ -46,7 +46,7 @@ bool Renderer::initialize()
     return true;
 }
 
-void Renderer::render(const Font& font, const Page& page,
+void Renderer::render(const Font& font, const Page* page,
         float running_time, const Mat4& font_scale) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -55,7 +55,10 @@ void Renderer::render(const Font& font, const Page& page,
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font.image().texture());
     glBindVertexArray(m_vertex_array);
-    render_page(page, running_time, font_scale);
+    if (page != nullptr)
+    {
+        render_page(*page, running_time, font_scale);
+    }
 }
 
 void Renderer::render_page(const Page& page, float running_time, const Mat4& font_scale) const

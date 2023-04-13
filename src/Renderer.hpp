@@ -26,7 +26,7 @@ public:
     ~Renderer();
 
     bool initialize();
-    void render(const Font& font, const Page& page,
+    void render(const Font& font, const Page* page,
             float running_time, const Mat4& font_scale) const;
 
 private:
