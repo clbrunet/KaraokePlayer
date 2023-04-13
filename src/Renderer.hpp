@@ -13,7 +13,7 @@ class Syllabe;
 class Letter;
 
 #define LETTER_BASE_WIDTH 0.01f
-#define LETTER_BASE_HEIGHT 0.04f
+#define LETTER_BASE_HEIGHT 0.035f
 #define SPACE_BASE_WIDTH (LETTER_BASE_WIDTH / 1.5f)
 
 class Renderer

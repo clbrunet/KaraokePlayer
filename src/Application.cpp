@@ -37,7 +37,7 @@ Application::Application() :
     {
         return;
     }
-    m_font_scale = Mat4::identity().scale(6.5f);
+    m_font_scale = Mat4::identity().scale(8.0f);
     set_projection_matrix();
     if (!m_song.load("assets/song.xml", m_font, "assets/song.ogg", m_audio_end_event))
     {
