@@ -62,7 +62,7 @@ bool Application::initialize_SDL()
     m_window = SDL_CreateWindow("Karaoke Player",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             APPLICATION_WIDTH, APPLICATION_HEIGHT,
-            SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);
+            SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
     if (!m_window)
     {
         std::cerr << "Coundl't create SDL window." << std::endl;
@@ -145,6 +145,9 @@ void Application::handle_events()
             case SDL_KEYDOWN:
                 handle_events_keydown(event);
                 break;
+            case SDL_WINDOWEVENT:
+                handle_events_window(event);
+                break;
             case SDL_QUIT:
                 m_running = false;
                 break;
@@ -153,6 +156,17 @@ void Application::handle_events()
         {
             m_running = false;
         }
+    }
+}
+
+void Application::handle_events_window(SDL_Event event)
+{
+    if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+    {
+        int width = 0;
+        int height = 0;
+        SDL_GetWindowSize(m_window, &width, &height);
+        glViewport(0, 0, width, height);
     }
 }
 

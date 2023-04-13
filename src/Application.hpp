@@ -42,6 +42,7 @@ private:
     bool initialize_OpenGL();
 
     void handle_events();
+    void handle_events_window(SDL_Event event);
     void handle_events_keydown(SDL_Event event);
     void update();
 };
