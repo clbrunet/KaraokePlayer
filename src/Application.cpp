@@ -14,7 +14,8 @@ Application::Application() :
     m_context(nullptr),
     m_renderer(Renderer()),
     m_font(Font()),
-    m_font_scale(Mat4()),
+    m_font_scale(Mat4::identity()),
+    m_projection(Mat4::identity()),
     m_song(Song()),
     m_pages_iterator(std::vector<Page>::const_iterator()),
     m_running(false),
@@ -37,6 +38,7 @@ Application::Application() :
         return;
     }
     m_font_scale = Mat4::identity().scale(6.5f);
+    set_projection_matrix();
     if (!m_song.load("assets/song.xml", m_font, "assets/song.ogg", m_audio_end_event))
     {
         return;
@@ -130,7 +132,7 @@ void Application::run()
         update();
         const Page* page = (m_pages_iterator != m_song.pages().cend())
             ? &*m_pages_iterator : nullptr;
-        m_renderer.render(m_font, page, m_running_time, m_font_scale);
+        m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
         SDL_GL_SwapWindow(m_window);
     }
 }
@@ -167,6 +169,7 @@ void Application::handle_events_window(SDL_Event event)
         int height = 0;
         SDL_GetWindowSize(m_window, &width, &height);
         glViewport(0, 0, width, height);
+        set_projection_matrix(width, height);
     }
 }
 
@@ -185,4 +188,19 @@ void Application::update()
     {
         m_pages_iterator++;
     }
+}
+
+void Application::set_projection_matrix()
+{
+    int width = 0;
+    int height = 0;
+    SDL_GetWindowSize(m_window, &width, &height);
+    set_projection_matrix(width, height);
+}
+
+void Application::set_projection_matrix(int window_width, int window_height)
+{
+    float aspect_ratio = ((float)window_width / (float)window_height);
+    m_projection = Mat4::identity();
+    m_projection.array[0][0] = 1.0f / aspect_ratio;
 }

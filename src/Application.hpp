@@ -32,6 +32,7 @@ private:
     Renderer m_renderer = Renderer();
     Font m_font = Font();
     Mat4 m_font_scale = Mat4::identity();
+    Mat4 m_projection = Mat4::identity();
     Song m_song = Song();
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
@@ -45,6 +46,9 @@ private:
     void handle_events_window(SDL_Event event);
     void handle_events_keydown(SDL_Event event);
     void update();
+
+    void set_projection_matrix();
+    void set_projection_matrix(int window_width, int window_height);
 };
 
 #endif

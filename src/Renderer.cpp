@@ -46,24 +46,25 @@ bool Renderer::initialize()
     return true;
 }
 
-void Renderer::render(const Font& font, const Page* page,
-        float running_time, const Mat4& font_scale) const
+void Renderer::render(const Font& font, const Page* page, float running_time,
+        const Mat4& projection, const Mat4& font_scale) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
-
+    if (page == nullptr)
+    {
+        return;
+    }
     m_program.use();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font.image().texture());
     glBindVertexArray(m_vertex_array);
-    if (page != nullptr)
-    {
-        render_page(*page, running_time, font_scale);
-    }
+    m_program.set_uniform_float("running_time", running_time);
+    m_program.set_uniform_mat4("projection", projection);
+    render_page(*page, font_scale);
 }
 
-void Renderer::render_page(const Page& page, float running_time, const Mat4& font_scale) const
+void Renderer::render_page(const Page& page, const Mat4& font_scale) const
 {
-    m_program.set_uniform_float("running_time", running_time);
     for (const Line& line : page.lines())
     {
         render_line(line, font_scale);
