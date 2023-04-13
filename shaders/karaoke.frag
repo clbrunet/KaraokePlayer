@@ -1,6 +1,7 @@
 #version 400 core
 
 in vec2 v_texture_coordinates;
+in float v_u;
 
 uniform sampler2D sampler;
 uniform float running_time;
@@ -16,7 +17,7 @@ void main()
     {
         discard;
     }
-    float letter_timing = mix(letter_start_timing, letter_end_timing, v_texture_coordinates.x);
+    float letter_timing = mix(letter_start_timing, letter_end_timing, v_u);
     if (running_time > letter_timing)
     {
         out_color = already_sung_text_color;

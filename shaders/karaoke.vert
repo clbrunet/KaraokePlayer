@@ -9,6 +9,7 @@ uniform vec2 char_texture_bottom_left;
 uniform vec2 char_texture_top_right;
 
 out vec2 v_texture_coordinates;
+out float v_u;
 
 void main()
 {
@@ -16,4 +17,5 @@ void main()
 
     v_texture_coordinates = mix(char_texture_bottom_left, char_texture_top_right,
             texture_coordinates);
+    v_u = texture_coordinates.x;
 }

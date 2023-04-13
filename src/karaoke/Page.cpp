@@ -9,7 +9,6 @@ Page::Page(const pugi::xml_node& page_node, const Font& font)
     {
         m_lines.push_back(Line(line_node, font));
     }
-    set_timings();
 }
 
 void Page::set_models()

@@ -48,6 +48,7 @@ bool Song::load_xml(const char* xml_path, const Font& font)
     for (Page& page : m_pages)
     {
         page.set_models();
+        page.set_timings();
     }
     return true;
 }
