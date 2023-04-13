@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 
-#include "Font.hpp"
+#include "graphics/Font.hpp"
 
 Font::Font(const char* xml_path, const char* image_path)
 {

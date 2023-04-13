@@ -1,7 +1,7 @@
 #ifndef KARAOKE_LETTER_HPP
 #define KARAOKE_LETTER_HPP
 
-#include "Font.hpp"
+#include "graphics/Font.hpp"
 #include "math/Mat4.hpp"
 
 class Letter

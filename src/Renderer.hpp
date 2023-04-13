@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Font.hpp"
+#include "graphics/Font.hpp"
 #include "Program.hpp"
 
 class Page;

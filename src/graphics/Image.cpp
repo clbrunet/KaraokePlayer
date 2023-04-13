@@ -3,7 +3,7 @@
 #include <glad/gl.h>
 #include <stb_image.h>
 
-#include "Image.hpp"
+#include "graphics/Image.hpp"
 
 Image::Image(const char* path)
 {

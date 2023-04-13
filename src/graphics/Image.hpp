@@ -1,5 +1,5 @@
-#ifndef IMAGE_HPP
-#define IMAGE_HPP
+#ifndef GRAPHICS_IMAGE_HPP
+#define GRAPHICS_IMAGE_HPP
 
 class Image
 {

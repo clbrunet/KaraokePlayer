@@ -1,9 +1,9 @@
-#ifndef FONT_HPP
-#define FONT_HPP
+#ifndef GRAPHICS_FONT_HPP
+#define GRAPHICS_FONT_HPP
 
 #include <pugixml.hpp>
 
-#include "Image.hpp"
+#include "graphics/Image.hpp"
 #include "math/Vec2.hpp"
 
 class Font
