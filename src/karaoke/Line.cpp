@@ -15,13 +15,16 @@ Line::Line(const pugi::xml_node& line_node, const Font& font) :
 void Line::set_models(float position)
 {
     int letters_count = this->letters_count();
-    float word_start_position = -((float)letters_count / 2.0f) + 0.5f;
+    int spaces_count = this->spaces_count();
+    float space_width = (float)SPACE_BASE_WIDTH / (float)LETTER_BASE_WIDTH;
+    float spaces_width = (float)spaces_count * space_width;
+    float word_start_position = -(((float)letters_count + spaces_width) / 2.0f) + 0.5f;
     for (Word& word : m_words)
     {
         float word_position = word_start_position
             + ((float)word.letters_count() / 2.0f) - 0.5f;
         word.set_models(word_position);
-        word_start_position += 1 + word.letters_count();
+        word_start_position += space_width + word.letters_count();
     }
     m_model.translate(Vec2(0.0f, -position * LETTER_BASE_HEIGHT));
 }
@@ -41,16 +44,21 @@ const std::vector<Word>& Line::words() const
 
 int Line::letters_count() const
 {
+    int letters_count = 0;
+    for (const Word& word : m_words)
+    {
+        letters_count += word.letters_count();
+    }
+    return letters_count;
+}
+
+int Line::spaces_count() const
+{
     if (m_words.size() == 0)
     {
         return 0;
     }
-    int letters_count = -1;
-    for (const Word& word : m_words)
-    {
-        letters_count += 1 + word.letters_count();
-    }
-    return letters_count;
+    return m_words.size() - 1;
 }
 
 const Mat4& Line::model() const
