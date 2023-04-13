@@ -1,5 +1,5 @@
-#ifndef LETTER_HPP
-#define LETTER_HPP
+#ifndef KARAOKE_LETTER_HPP
+#define KARAOKE_LETTER_HPP
 
 #include "Font.hpp"
 #include "Mat4.hpp"

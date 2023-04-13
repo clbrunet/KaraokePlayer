@@ -1,5 +1,5 @@
-#ifndef SONG_HPP
-#define SONG_HPP
+#ifndef KARAOKE_SONG_HPP
+#define KARAOKE_SONG_HPP
 
 #include <vector>
 
