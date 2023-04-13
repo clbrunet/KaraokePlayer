@@ -6,6 +6,7 @@
 
 #include "Program.hpp"
 #include "math/Vec2.hpp"
+#include "math/Vec4.hpp"
 #include "math/Mat4.hpp"
 
 Program::~Program()
@@ -95,6 +96,11 @@ void Program::set_uniform_float(const char* location, float f) const
 void Program::set_uniform_vec2(const char* location, Vec2 vec2) const
 {
     glUniform2fv(glGetUniformLocation(m_program, location), 1, vec2.array);
+}
+
+void Program::set_uniform_vec4(const char* location, Vec4 vec4) const
+{
+    glUniform4fv(glGetUniformLocation(m_program, location), 1, vec4.array);
 }
 
 void Program::set_uniform_mat4(const char* location, const Mat4& mat4) const

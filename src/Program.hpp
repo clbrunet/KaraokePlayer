@@ -4,6 +4,7 @@
 #include <glad/gl.h>
 
 struct Vec2;
+struct Vec4;
 struct Mat4;
 
 class Program
@@ -22,6 +23,7 @@ public:
     void set_uniform_int(const char* location, int i) const;
     void set_uniform_float(const char* location, float f) const;
     void set_uniform_vec2(const char* location, Vec2 vec2) const;
+    void set_uniform_vec4(const char* location, Vec4 vec4) const;
     void set_uniform_mat4(const char* location, const Mat4& mat4) const;
 
 private:

@@ -4,6 +4,7 @@
 
 #include "Renderer.hpp"
 #include "math/Vec2.hpp"
+#include "math/Vec4.hpp"
 #include "math/Mat4.hpp"
 #include "karaoke/Letter.hpp"
 #include "karaoke/Page.hpp"
@@ -41,6 +42,7 @@ bool Renderer::initialize()
     }
     m_program.use();
     m_program.set_uniform_int("sampler", 0);
+    m_program.set_uniform_vec4("already_sung_text_color", Vec4(1.0f, 0.6f, 0.0f, 1.0f));
     return true;
 }
 
