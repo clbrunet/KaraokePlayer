@@ -33,14 +33,18 @@ public:
 private:
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
-    float m_vertices[30] =
+    float m_vertices[20] =
     {
         -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
         -(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    0.0f, 1.0f,
         (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
         (LETTER_BASE_WIDTH / 2.0f),  -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    1.0f, 0.0f,
-        -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
+    };
+    unsigned int m_element_buffer = 0;
+    unsigned int m_indices[6] =
+    {
+        0, 1, 2,
+        0, 2, 3,
     };
     Program m_program = Program();
 

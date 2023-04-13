@@ -15,6 +15,7 @@ Renderer::~Renderer()
 {
     glDeleteVertexArrays(1, &m_vertex_array);
     glDeleteBuffers(1, &m_vertex_buffer);
+    glDeleteBuffers(1, &m_element_buffer);
 }
 
 bool Renderer::initialize()
@@ -23,11 +24,15 @@ bool Renderer::initialize()
 
     glGenVertexArrays(1, &m_vertex_array);
     glGenBuffers(1, &m_vertex_buffer);
+    glGenBuffers(1, &m_element_buffer);
 
     glBindVertexArray(m_vertex_array);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_indices), m_indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -102,5 +107,5 @@ void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) co
     m_program.set_uniform_mat4("model", syllabe_model * letter.model());
     m_program.set_uniform_float("letter_start_timing", letter.start_timing());
     m_program.set_uniform_float("letter_end_timing", letter.end_timing());
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(m_vertices) / sizeof(float));
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
