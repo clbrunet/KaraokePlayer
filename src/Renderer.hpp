@@ -12,8 +12,8 @@ class Word;
 class Syllabe;
 class Letter;
 
-#define LETTER_BASE_WIDTH 0.04f
-#define LETTER_BASE_HEIGHT 0.14f
+#define LETTER_BASE_WIDTH 0.01f
+#define LETTER_BASE_HEIGHT 0.04f
 
 class Renderer
 {

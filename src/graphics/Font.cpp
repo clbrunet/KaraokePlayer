@@ -55,10 +55,13 @@ Font::CharTextureCoordinates Font::get_char_texture_coordinates(unsigned char c)
     {
         char_node = question_mark_node;
     }
-    int start_x = std::atoi(char_node.attribute("x").value());
-    int start_y = m_image.height() - std::atoi(char_node.attribute("y").value());
-    int end_x = start_x + std::atoi(char_node.attribute("width").value());
-    int end_y = start_y - std::atoi(char_node.attribute("height").value());
+    int offset_x = std::atoi(char_node.attribute("xoffset").value());
+    int offset_y = std::atoi(char_node.attribute("xoffset").value());
+
+    int start_x = std::atoi(char_node.attribute("x").value()) - offset_x;
+    int start_y = m_image.height() - std::atoi(char_node.attribute("y").value()) - offset_y;
+    int end_x = start_x + std::atoi(char_node.attribute("width").value()) + offset_x;
+    int end_y = start_y - std::atoi(char_node.attribute("height").value()) + offset_y;
 
     Vec2 bottom_left((float)start_x / (float)m_image.width(),
             (float)end_y / (float)m_image.height());
