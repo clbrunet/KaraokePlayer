@@ -37,7 +37,7 @@ Application::Application() :
         return;
     }
     m_font_scale = Mat4::identity().scale(1.5f);
-    if (!m_song.load("assets/song.xml", "assets/song.ogg", m_font))
+    if (!m_song.load("assets/song.xml", m_font, "assets/song.ogg", m_audio_end_event))
     {
         return;
     }
@@ -78,6 +78,12 @@ bool Application::initialize_SDL()
 
     SDL_GL_SetSwapInterval(1);
 
+    m_audio_end_event = SDL_RegisterEvents(1);
+    if (m_audio_end_event == -1)
+    {
+        fputs("Couldn't register events.\n", stderr);
+        return false;
+    }
     return true;
 }
 
@@ -140,6 +146,10 @@ void Application::handle_events()
             case SDL_QUIT:
                 m_running = false;
                 break;
+        }
+        if (event.type == m_audio_end_event)
+        {
+            m_running = false;
         }
     }
 }

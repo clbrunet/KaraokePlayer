@@ -8,9 +8,9 @@
 
 #include "karaoke/Song.hpp"
 
-Song::Song(const char* ogg_path, const char* xml_path, const Font& font)
+Song::Song(const char* xml_path, const Font& font, const char* ogg_path, uint32_t audio_end_event)
 {
-    load(ogg_path, xml_path, font);
+    load(xml_path, font, ogg_path, audio_end_event);
 }
 
 Song::~Song()
@@ -19,13 +19,14 @@ Song::~Song()
     free(m_ogg_output);
 }
 
-bool Song::load(const char* xml_path, const char* ogg_path, const Font& font)
+bool Song::load(const char* xml_path, const Font& font,
+        const char* ogg_path, uint32_t audio_end_event)
 {
     if (!load_xml(xml_path, font))
     {
         return false;
     }
-    if (!load_audio(ogg_path))
+    if (!load_audio(ogg_path, audio_end_event))
     {
         return false;
     }
@@ -56,6 +57,9 @@ static void audio_callback(void* userdata, uint8_t* stream, int len) {
     SDL_memset(stream, 0, len); // silence the stream
     if (audio_callback_data->audio_length == 0)
     {
+        SDL_Event event;
+        event.type = audio_callback_data->audio_end_event;
+        SDL_PushEvent(&event);
         return;
     }
     len = std::min(len, audio_callback_data->audio_length);
@@ -64,7 +68,7 @@ static void audio_callback(void* userdata, uint8_t* stream, int len) {
     audio_callback_data->audio_length -= len;
 }
 
-bool Song::load_audio(const char* ogg_path)
+bool Song::load_audio(const char* ogg_path, uint32_t audio_end_event)
 {
     int channels;
     int sample_rate;
@@ -75,6 +79,7 @@ bool Song::load_audio(const char* ogg_path)
     }
     m_audio_callback_data.audio_length = length * channels * (sizeof(int16_t) / sizeof(int8_t));
     m_audio_callback_data.audio_position = (uint8_t*)m_ogg_output;
+    m_audio_callback_data.audio_end_event = audio_end_event;
 
     SDL_AudioSpec spec;
     spec.freq = sample_rate;

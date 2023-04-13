@@ -17,9 +17,10 @@ public:
     Song &operator=(const Song &) = delete;
     ~Song();
 
-    Song(const char* ogg_path, const char* xml_path, const Font& font);
+    Song(const char* xml_path, const Font& font, const char* ogg_path, uint32_t audio_end_event);
 
-    bool load(const char* xml_path, const char* ogg_path, const Font& font);
+    bool load(const char* xml_path, const Font& font,
+            const char* ogg_path, uint32_t audio_end_event);
 
     const std::vector<Page>& pages() const;
 
@@ -27,6 +28,7 @@ public:
     {
         int audio_length = -1;
         uint8_t* audio_position = nullptr;
+        uint32_t audio_end_event = -1;
     };
 
 private:
@@ -35,7 +37,7 @@ private:
     AudioCallbackData m_audio_callback_data;
 
     bool load_xml(const char* xml_path, const Font& font);
-    bool load_audio(const char* ogg_path);
+    bool load_audio(const char* ogg_path, uint32_t audio_end_event);
 };
 
 #endif

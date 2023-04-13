@@ -36,6 +36,7 @@ private:
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
     float m_running_time = 0.0f;
+    uint32_t m_audio_end_event = -1;
 
     bool initialize_SDL();
     bool initialize_OpenGL();
