@@ -5,8 +5,8 @@
 #include <glad/gl.h>
 
 #include "Program.hpp"
-#include "Vec2.hpp"
-#include "Mat4.hpp"
+#include "math/Vec2.hpp"
+#include "math/Mat4.hpp"
 
 Program::~Program()
 {

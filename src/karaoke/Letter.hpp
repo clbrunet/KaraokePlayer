@@ -2,7 +2,7 @@
 #define KARAOKE_LETTER_HPP
 
 #include "Font.hpp"
-#include "Mat4.hpp"
+#include "math/Mat4.hpp"
 
 class Letter
 {

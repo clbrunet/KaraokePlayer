@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "Letter.hpp"
+#include "karaoke/Letter.hpp"
 
 class Syllabe
 {

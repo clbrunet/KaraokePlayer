@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Renderer.hpp"
-#include "Word.hpp"
+#include "karaoke/Word.hpp"
 
 Word::Word(const pugi::xml_node& word_node, const Font& font) :
     m_model(Mat4::identity())

@@ -1,6 +1,7 @@
-#include "Mat4.hpp"
-#include "Vec2.hpp"
 #include <cstring>
+
+#include "math/Mat4.hpp"
+#include "math/Vec2.hpp"
 
 Mat4::Mat4()
 {

@@ -4,7 +4,7 @@
 #include <pugixml.hpp>
 
 #include "Image.hpp"
-#include "Vec2.hpp"
+#include "math/Vec2.hpp"
 
 class Font
 {

@@ -1,5 +1,5 @@
-#ifndef MAT4_HPP
-#define MAT4_HPP
+#ifndef MATH_MAT4_HPP
+#define MATH_MAT4_HPP
 
 struct Vec2;
 

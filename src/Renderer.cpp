@@ -3,8 +3,8 @@
 #include <glad/gl.h>
 
 #include "Renderer.hpp"
-#include "Vec2.hpp"
-#include "Mat4.hpp"
+#include "math/Vec2.hpp"
+#include "math/Mat4.hpp"
 #include "karaoke/Letter.hpp"
 #include "karaoke/Page.hpp"
 #include "karaoke/Syllabe.hpp"

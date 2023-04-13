@@ -1,5 +1,5 @@
-#ifndef VEC2_HPP
-#define VEC2_HPP
+#ifndef MATH_VEC2_HPP
+#define MATH_VEC2_HPP
 
 struct Vec2
 {
