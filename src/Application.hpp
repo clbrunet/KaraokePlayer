@@ -35,7 +35,7 @@ private:
     Song m_song = Song();
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
-    float m_time = 0.0f;
+    float m_running_time = 0.0f;
 
     bool initialize_SDL();
     bool initialize_OpenGL();

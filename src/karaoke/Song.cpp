@@ -87,8 +87,6 @@ bool Song::load_audio(const char* ogg_path)
         std::cerr << "Coundl't open audio device." << std::endl;
         return false;
     }
-    SDL_PauseAudio(0);
-
     return true;
 }
 

@@ -18,7 +18,7 @@ Application::Application() :
     m_song(Song()),
     m_pages_iterator(std::vector<Page>::const_iterator()),
     m_running(false),
-    m_time(0.0f)
+    m_running_time(0.0f)
 {
     if (!initialize_SDL())
     {
@@ -110,7 +110,9 @@ void Application::run()
     assert(is_initialized() && "Check Application::is_initialized before calling Application::run");
 
     m_running = true;
-    m_time = (float)SDL_GetTicks64() / 1000.0f;
+    SDL_PauseAudio(0);
+    float start_running_time = (float)SDL_GetTicks64() / 1000.0f;
+    m_running_time = 0.0f;
     while (m_running)
     {
         handle_events();
@@ -118,7 +120,7 @@ void Application::run()
         {
             break;
         }
-        m_time = (float)SDL_GetTicks64() / 1000.0f;
+        m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
         m_renderer.render(m_font, *m_pages_iterator, m_font_scale);
         SDL_GL_SwapWindow(m_window);
@@ -152,7 +154,7 @@ void Application::handle_events_keydown(SDL_Event event)
 
 void Application::update()
 {
-    if (m_pages_iterator->get_end_ms() < m_time)
+    if (m_pages_iterator->get_end_ms() < m_running_time)
     {
         if (m_pages_iterator + 1 != m_song.pages().cend())
         {
