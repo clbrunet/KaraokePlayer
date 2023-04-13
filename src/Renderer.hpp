@@ -27,25 +27,14 @@ public:
     ~Renderer();
 
     bool initialize();
+    void initialize_OpenGL_objects();
     void render(const Font& font, const Page* page, float running_time,
             const Mat4& projection , const Mat4& font_scale) const;
 
 private:
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
-    float m_vertices[20] =
-    {
-        -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
-        -(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    0.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    1.0f, 0.0f,
-    };
     unsigned int m_element_buffer = 0;
-    unsigned int m_indices[6] =
-    {
-        0, 1, 2,
-        0, 2, 3,
-    };
     Program m_program = Program();
 
     void render_page(const Page& page, const Mat4& font_scale) const;
