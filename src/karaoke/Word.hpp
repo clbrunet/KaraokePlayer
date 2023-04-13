@@ -18,11 +18,12 @@ public:
     Word(const pugi::xml_node& word_node, const Font& font);
 
     void set_models(float position);
+    void set_timings();
 
     const std::vector<Syllabe>& syllabes() const;
     int letters_count() const;
     const Mat4& model() const;
-    float get_end_ms() const;
+    float get_end_second() const;
 
 private:
     std::vector<Syllabe> m_syllabes;

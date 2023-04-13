@@ -19,14 +19,15 @@ public:
     Syllabe(const pugi::xml_node& syllabe_node, const Font& font);
 
     void set_models(float position);
+    void set_timings();
 
     const std::vector<Letter>& letters() const;
     const Mat4& model() const;
-    float get_end_ms() const;
+    float get_end_second() const;
 
 private:
-    float m_start_ms;
-    float m_end_ms;
+    float m_start_second;
+    float m_end_second;
     std::vector<Letter> m_letters;
     Mat4 m_model;
 

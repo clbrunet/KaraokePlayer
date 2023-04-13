@@ -87,6 +87,11 @@ void Program::set_uniform_int(const char* location, int i) const
     glUniform1i(glGetUniformLocation(m_program, location), i);
 }
 
+void Program::set_uniform_float(const char* location, float f) const
+{
+    glUniform1f(glGetUniformLocation(m_program, location), f);
+}
+
 void Program::set_uniform_vec2(const char* location, Vec2 vec2) const
 {
     glUniform2fv(glGetUniformLocation(m_program, location), 1, vec2.array);

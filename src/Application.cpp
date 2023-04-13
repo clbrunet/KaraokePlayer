@@ -128,7 +128,7 @@ void Application::run()
         }
         m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
-        m_renderer.render(m_font, *m_pages_iterator, m_font_scale);
+        m_renderer.render(m_font, *m_pages_iterator, m_running_time, m_font_scale);
         SDL_GL_SwapWindow(m_window);
     }
 }
@@ -164,7 +164,7 @@ void Application::handle_events_keydown(SDL_Event event)
 
 void Application::update()
 {
-    if (m_pages_iterator->get_end_ms() < m_running_time)
+    if (m_pages_iterator->get_end_second() < m_running_time)
     {
         if (m_pages_iterator + 1 != m_song.pages().cend())
         {

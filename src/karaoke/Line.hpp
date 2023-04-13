@@ -18,11 +18,12 @@ public:
     Line(const pugi::xml_node& line_node, const Font& font);
 
     void set_models(float position);
+    void set_timings();
 
     const std::vector<Word>& words() const;
     int letters_count() const;
     const Mat4& model() const;
-    float get_end_ms() const;
+    float get_end_second() const;
 
 private:
     std::vector<Word> m_words;

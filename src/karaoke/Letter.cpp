@@ -14,6 +14,12 @@ void Letter::set_model(float position)
     m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
 }
 
+void Letter::set_timings(float start_timing, float end_timing)
+{
+    m_start_timing = start_timing;
+    m_end_timing = end_timing;
+}
+
 Vec2 Letter::texture_bottom_left() const
 {
     return m_char_texture_coordinates.bottom_left;
@@ -27,4 +33,14 @@ Vec2 Letter::texture_top_right() const
 const Mat4& Letter::model() const
 {
     return m_model;
+}
+
+float Letter::start_timing() const
+{
+    return m_start_timing;
+}
+
+float Letter::end_timing() const
+{
+    return m_end_timing;
 }

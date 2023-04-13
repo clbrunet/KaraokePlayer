@@ -20,6 +20,7 @@ public:
     void use() const;
 
     void set_uniform_int(const char* location, int i) const;
+    void set_uniform_float(const char* location, float f) const;
     void set_uniform_vec2(const char* location, Vec2 vec2) const;
     void set_uniform_mat4(const char* location, const Mat4& mat4) const;
 

@@ -26,6 +26,14 @@ void Word::set_models(float position)
     m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
 }
 
+void Word::set_timings()
+{
+    for (Syllabe& syllabe : m_syllabes)
+    {
+        syllabe.set_timings();
+    }
+}
+
 const std::vector<Syllabe>& Word::syllabes() const
 {
     return m_syllabes;
@@ -46,11 +54,11 @@ const Mat4& Word::model() const
     return m_model;
 }
 
-float Word::get_end_ms() const
+float Word::get_end_second() const
 {
     if (m_syllabes.size() == 0)
     {
         return 0.0f;
     }
-    return m_syllabes.back().get_end_ms();
+    return m_syllabes.back().get_end_second();
 }

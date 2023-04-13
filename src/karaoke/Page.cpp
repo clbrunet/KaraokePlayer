@@ -9,6 +9,7 @@ Page::Page(const pugi::xml_node& page_node, const Font& font)
     {
         m_lines.push_back(Line(line_node, font));
     }
+    set_timings();
 }
 
 void Page::set_models()
@@ -23,16 +24,24 @@ void Page::set_models()
     }
 }
 
+void Page::set_timings()
+{
+    for (Line& line : m_lines)
+    {
+        line.set_timings();
+    }
+}
+
 const std::vector<Line>& Page::lines() const
 {
     return m_lines;
 }
 
-float Page::get_end_ms() const
+float Page::get_end_second() const
 {
     if (m_lines.size() == 0)
     {
         return 0.0f;
     }
-    return m_lines.back().get_end_ms();
+    return m_lines.back().get_end_second();
 }

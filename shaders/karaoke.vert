@@ -12,8 +12,8 @@ out vec2 v_texture_coordinates;
 
 void main()
 {
-  gl_Position = model * position;
+    gl_Position = model * position;
 
-  v_texture_coordinates = mix(char_texture_bottom_left, char_texture_top_right,
-      texture_coordinates);
+    v_texture_coordinates = mix(char_texture_bottom_left, char_texture_top_right,
+            texture_coordinates);
 }

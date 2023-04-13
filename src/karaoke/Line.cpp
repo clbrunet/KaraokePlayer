@@ -26,6 +26,14 @@ void Line::set_models(float position)
     m_model.translate(Vec2(0.0f, -position * LETTER_BASE_HEIGHT));
 }
 
+void Line::set_timings()
+{
+    for (Word& word : m_words)
+    {
+        word.set_timings();
+    }
+}
+
 const std::vector<Word>& Line::words() const
 {
     return m_words;
@@ -50,11 +58,11 @@ const Mat4& Line::model() const
     return m_model;
 }
 
-float Line::get_end_ms() const
+float Line::get_end_second() const
 {
     if (m_words.size() == 0)
     {
         return 0.0f;
     }
-    return m_words.back().get_end_ms();
+    return m_words.back().get_end_second();
 }

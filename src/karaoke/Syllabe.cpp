@@ -7,8 +7,8 @@
 Syllabe::Syllabe(const pugi::xml_node& syllabe_node, const Font& font) :
     m_model(Mat4::identity())
 {
-    m_start_ms = (float)parse_ms_text(syllabe_node.child("start").text().get()) / 1000.0f;
-    m_end_ms = (float)parse_ms_text(syllabe_node.child("end").text().get()) / 1000.0f;
+    m_start_second = (float)parse_ms_text(syllabe_node.child("start").text().get()) / 1000.0f;
+    m_end_second = (float)parse_ms_text(syllabe_node.child("end").text().get()) / 1000.0f;
     const unsigned char* chars = (const unsigned char*)syllabe_node.child("text").text().get();
     while (*chars != '\0')
     {
@@ -28,6 +28,17 @@ void Syllabe::set_models(float position)
     m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
 }
 
+void Syllabe::set_timings()
+{
+    float timing = m_start_second;
+    float letter_duration = (m_end_second - m_start_second) / m_letters.size();
+    for (Letter& letter : m_letters)
+    {
+        letter.set_timings(timing, timing + letter_duration);
+        timing += letter_duration;
+    }
+}
+
 const std::vector<Letter>& Syllabe::letters() const
 {
     return m_letters;
@@ -38,9 +49,9 @@ const Mat4& Syllabe::model() const
     return m_model;
 }
 
-float Syllabe::get_end_ms() const
+float Syllabe::get_end_second() const
 {
-    return m_end_ms;
+    return m_end_second;
 }
 
 uint64_t Syllabe::parse_ms_text(const std::string& text) const
