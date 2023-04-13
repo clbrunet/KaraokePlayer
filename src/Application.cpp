@@ -50,7 +50,7 @@ bool Application::initialize_SDL()
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
-        fputs("Coundl't initialize video subsystem.\n", stderr);
+        std::cerr << "Coundl't initialize video subsystem." << std::endl;
         return false;
     }
 
@@ -65,14 +65,14 @@ bool Application::initialize_SDL()
             SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI);
     if (!m_window)
     {
-        fputs("Couldn't create SDL window.\n", stderr);
+        std::cerr << "Coundl't create SDL window." << std::endl;
         return false;
     }
 
     m_context = SDL_GL_CreateContext(m_window);
     if (!m_context)
     {
-        fputs("Couldn't create OpenGL context.\n", stderr);
+        std::cerr << "Coundl't create OpenGL context." << std::endl;
         return false;
     }
 
@@ -81,7 +81,7 @@ bool Application::initialize_SDL()
     m_audio_end_event = SDL_RegisterEvents(1);
     if (m_audio_end_event == -1)
     {
-        fputs("Couldn't register events.\n", stderr);
+        std::cerr << "Coundl't register events." << std::endl;
         return false;
     }
     return true;
@@ -92,7 +92,7 @@ bool Application::initialize_OpenGL()
     int version = gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
     if (version == 0)
     {
-        fputs("Couldn't initialize glad.\n", stderr);
+        std::cerr << "Coundl't initialize glad." << std::endl;
         return false;
     }
     glViewport(0, 0, APPLICATION_WIDTH, APPLICATION_HEIGHT);
