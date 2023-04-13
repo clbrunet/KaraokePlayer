@@ -43,6 +43,11 @@ unsigned int Program::create_shader(GLenum shader_type, const char* shader_path)
     unsigned int shader = glCreateShader(shader_type);
 
     std::ifstream ifstream(shader_path);
+    if (ifstream.fail())
+    {
+        std::cerr << "Couldn't open shader '" << shader_path << "'." << std::endl;
+        return 0;
+    }
     std::stringstream buffer;
     buffer << ifstream.rdbuf();
     std::string string = buffer.str();
@@ -59,7 +64,7 @@ unsigned int Program::create_shader(GLenum shader_type, const char* shader_path)
     char info_log[1024];
     glGetShaderInfoLog(shader, 1024, nullptr, info_log);
     glDeleteShader(shader);
-    std::cerr << "Shader '" << source << "' compilation error :\n" << info_log << std::flush;
+    std::cerr << "Shader '" << shader_path << "' compilation error :\n" << info_log << std::flush;
     return 0;
 }
 
