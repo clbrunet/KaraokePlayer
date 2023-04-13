@@ -48,7 +48,7 @@ Application::Application() :
 
 bool Application::initialize_SDL()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
         fputs("Coundl't initialize video subsystem.\n", stderr);
         return false;
