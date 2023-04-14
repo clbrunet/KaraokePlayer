@@ -14,7 +14,7 @@ Word::Word(const pugi::xml_node& word_node, const Font& font) :
 
 void Word::set_models(float local_position)
 {
-    m_model.translate(Vec2(local_position, 0.0f));
+    m_model = Mat4::identity().translate(Vec2(local_position, 0.0f));
 
     // spread syllabe positions around 0
     float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;

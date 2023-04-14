@@ -14,7 +14,7 @@ Line::Line(const pugi::xml_node& line_node, const Font& font) :
 
 void Line::set_models(float local_position)
 {
-    m_model.translate(Vec2(0.0f, local_position));
+    m_model = Mat4::identity().translate(Vec2(0.0f, local_position));
 
     // spread word positions around 0
     float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;

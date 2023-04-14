@@ -11,7 +11,7 @@ Letter::Letter(const Font& font, unsigned char c) :
 
 void Letter::set_model(float local_position)
 {
-    m_model.translate(Vec2(local_position, 0.0f));
+    m_model = Mat4::identity().translate(Vec2(local_position, 0.0f));
 }
 
 void Letter::set_timings(float start_timing, float end_timing)
