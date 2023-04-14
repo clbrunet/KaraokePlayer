@@ -64,7 +64,7 @@ bool Application::initialize_SDL()
     m_window = SDL_CreateWindow("Karaoke Player",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             APPLICATION_WIDTH, APPLICATION_HEIGHT,
-            SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
+            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!m_window)
     {
         std::cerr << "Coundl't create SDL window." << std::endl;
