@@ -26,6 +26,7 @@ bool Song::load(const char* xml_path, const Font& font,
     {
         return false;
     }
+    add_empty_pages();
     if (!load_audio(ogg_path, audio_end_event))
     {
         return false;
@@ -51,6 +52,27 @@ bool Song::load_xml(const char* xml_path, const Font& font)
         page.set_timings();
     }
     return true;
+}
+
+void Song::add_empty_pages()
+{
+    constexpr float PAGES_TIMINGS_DIFF_MINIMUM = 5.0f;
+    constexpr float EMPTY_PAGE_TO_NEXT_DIFF = 2.0f;
+    static_assert(PAGES_TIMINGS_DIFF_MINIMUM > EMPTY_PAGE_TO_NEXT_DIFF,
+            "A minimum page timings difference greater than"
+            "the created differences will cause an infinite loop");
+    float last_end_timing = 0.0f;
+    for (size_t i = 0; i < m_pages.size(); i++) {
+        float start_timing = m_pages[i].start_timing();
+        float end_timing = m_pages[i].end_timing();
+        if (start_timing - last_end_timing > PAGES_TIMINGS_DIFF_MINIMUM)
+        {
+            m_pages.insert(m_pages.begin() + i,
+                    Page(last_end_timing, start_timing - EMPTY_PAGE_TO_NEXT_DIFF));
+            i++;
+        }
+        last_end_timing = end_timing;
+    }
 }
 
 static void audio_callback(void* userdata, uint8_t* stream, int len) {

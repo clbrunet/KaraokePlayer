@@ -16,6 +16,7 @@ public:
     ~Page() = default;
 
     Page(const pugi::xml_node& page_node, const Font& font);
+    Page(float start_timing, float end_timing);
 
     void set_models(Vec2 page_translation);
     void set_timings();

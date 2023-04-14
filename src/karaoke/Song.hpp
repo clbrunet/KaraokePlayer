@@ -37,6 +37,7 @@ private:
     AudioCallbackData m_audio_callback_data;
 
     bool load_xml(const char* xml_path, const Font& font);
+    void add_empty_pages();
     bool load_audio(const char* ogg_path, uint32_t audio_end_event);
 };
 

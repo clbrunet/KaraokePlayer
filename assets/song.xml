@@ -709,4 +709,100 @@
       </word>
     </line>
   </page>
+  <page id="11">
+    <line id="18">
+      <word id="1">
+        <syllabe>
+          <start>00:01:26,140</start>
+          <end>00:01:26,280</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:01:26,280</start>
+          <end>00:01:26,410</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:01:26,410</start>
+          <end>00:01:26,540</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:01:26,540</start>
+          <end>00:01:26,670</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:01:26,670</start>
+          <end>00:01:27,070</end>
+          <text>give</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:01:27,070</start>
+          <end>00:01:27,470</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:01:27,470</start>
+          <end>00:01:27,730</end>
+          <text>up</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="19">
+      <word id="1">
+        <syllabe>
+          <start>00:01:28,270</start>
+          <end>00:01:28,400</end>
+          <text>ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:01:28,400</start>
+          <end>00:01:28,530</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:01:28,530</start>
+          <end>00:01:28,670</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:01:28,670</start>
+          <end>00:01:28,800</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:01:28,800</start>
+          <end>00:01:29,200</end>
+          <text>let</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:01:29,200</start>
+          <end>00:01:29,590</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:01:29,590</start>
+          <end>00:01:30,120</end>
+          <text>down</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
 </karaoke>
