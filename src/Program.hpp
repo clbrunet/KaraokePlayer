@@ -28,6 +28,6 @@ public:
 private:
     unsigned int m_program = 0;
 
-    unsigned int create_shader(GLenum shader_type, const char* content) const;
+    static unsigned int create_shader(GLenum shader_type, const char* content);
     bool link_program();
 };

@@ -38,7 +38,7 @@ bool Program::initialize(const char* vertex_shader_path, const char* fragment_sh
     return isProgramLinked;
 }
 
-unsigned int Program::create_shader(GLenum shader_type, const char* shader_path) const
+unsigned int Program::create_shader(GLenum shader_type, const char* shader_path)
 {
     unsigned int shader = glCreateShader(shader_type);
 

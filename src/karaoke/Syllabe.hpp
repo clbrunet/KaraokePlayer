@@ -32,5 +32,5 @@ private:
     std::vector<Letter> m_letters;
     Mat4 m_model;
 
-    uint64_t parse_ms_text(const std::string& text) const;
+    static uint64_t parse_ms_text(const std::string& text);
 };

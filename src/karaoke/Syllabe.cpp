@@ -74,7 +74,7 @@ float Syllabe::end_timing() const
     return m_end_timing;
 }
 
-uint64_t Syllabe::parse_ms_text(const std::string& text) const
+uint64_t Syllabe::parse_ms_text(const std::string& text)
 {
     std::istringstream isstream(text);
     char separator = 0;
