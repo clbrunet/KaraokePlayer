@@ -16,6 +16,8 @@ struct Vec2
     };
 
     Vec2(float x, float y);
+
+    static Vec2 zero();
 };
 
 #endif

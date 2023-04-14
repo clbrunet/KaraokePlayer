@@ -3,7 +3,8 @@
 #include "Renderer.hpp"
 #include "karaoke/Page.hpp"
 
-Page::Page(const pugi::xml_node& page_node, const Font& font)
+Page::Page(const pugi::xml_node& page_node, const Font& font) :
+    m_model(Mat4::identity())
 {
     for (pugi::xml_node line_node : page_node)
     {
@@ -11,8 +12,10 @@ Page::Page(const pugi::xml_node& page_node, const Font& font)
     }
 }
 
-void Page::set_models()
+void Page::set_models(Vec2 page_translation)
 {
+    m_model = Mat4::identity().translate(page_translation);
+
     // spread line positions around 0
     int lines_count = m_lines.size();
     float lines_height = (float)lines_count * LETTER_BASE_HEIGHT;
@@ -36,6 +39,11 @@ void Page::set_timings()
 const std::vector<Line>& Page::lines() const
 {
     return m_lines;
+}
+
+const Mat4& Page::model() const
+{
+    return m_model;
 }
 
 float Page::get_end_second() const

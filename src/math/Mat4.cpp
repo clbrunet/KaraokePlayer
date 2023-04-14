@@ -42,7 +42,7 @@ Mat4& Mat4::operator=(Mat4 const& rhs)
     return *this;
 }
 
- Mat4 Mat4::identity()
+Mat4 Mat4::identity()
 {
     return Mat4(
             1, 0, 0, 0,

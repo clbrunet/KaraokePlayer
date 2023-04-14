@@ -89,15 +89,15 @@ void Renderer::render_page(const Page& page, const Mat4& font_scale) const
 {
     for (const Line& line : page.lines())
     {
-        render_line(line, font_scale);
+        render_line(line, page.model(), font_scale);
     }
 }
 
-void Renderer::render_line(const Line& line, const Mat4& font_scale) const
+void Renderer::render_line(const Line& line, const Mat4& page_model, const Mat4& font_scale) const
 {
     for (const Word& word : line.words())
     {
-        render_word(word, font_scale * line.model());
+        render_word(word, page_model * font_scale * line.model());
     }
 }
 

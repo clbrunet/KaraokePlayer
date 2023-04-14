@@ -17,14 +17,16 @@ public:
 
     Page(const pugi::xml_node& page_node, const Font& font);
 
-    void set_models();
+    void set_models(Vec2 page_translation);
     void set_timings();
 
     const std::vector<Line>& lines() const;
+    const Mat4& model() const;
     float get_end_second() const;
 
 private:
     std::vector<Line> m_lines;
+    Mat4 m_model;
 };
 
 #endif
