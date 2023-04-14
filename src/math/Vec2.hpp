@@ -1,5 +1,4 @@
-#ifndef MATH_VEC2_HPP
-#define MATH_VEC2_HPP
+#pragma once
 
 struct Vec2
 {
@@ -19,5 +18,3 @@ struct Vec2
 
     static Vec2 zero();
 };
-
-#endif

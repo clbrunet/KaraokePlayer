@@ -1,5 +1,4 @@
-#ifndef KARAOKE_LETTER_HPP
-#define KARAOKE_LETTER_HPP
+#pragma once
 
 #include "graphics/Font.hpp"
 #include "math/Mat4.hpp"
@@ -31,5 +30,3 @@ private:
     float m_start_timing;
     float m_end_timing;
 };
-
-#endif

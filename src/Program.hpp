@@ -1,5 +1,4 @@
-#ifndef PROGRAM_HPP
-#define PROGRAM_HPP
+#pragma once
 
 #include <glad/gl.h>
 
@@ -32,5 +31,3 @@ private:
     unsigned int create_shader(GLenum shader_type, const char* content) const;
     bool link_program();
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef GRAPHICS_IMAGE_HPP
-#define GRAPHICS_IMAGE_HPP
+#pragma once
 
 class Image
 {
@@ -24,5 +23,3 @@ private:
     int m_channels_count = -1;
     unsigned int m_texture = 0;
 };
-
-#endif

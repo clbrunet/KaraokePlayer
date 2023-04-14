@@ -1,5 +1,4 @@
-#ifndef GRAPHICS_FONT_HPP
-#define GRAPHICS_FONT_HPP
+#pragma once
 
 #include <pugixml.hpp>
 
@@ -34,5 +33,3 @@ private:
 
     pugi::xml_node get_char_xml_node(unsigned char c) const;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef KARAOKE_KARAOKE_HPP
-#define KARAOKE_KARAOKE_HPP
+#pragma once
 
 #include <vector>
 
@@ -28,5 +27,3 @@ private:
 
     void add_empty_pages();
 };
-
-#endif

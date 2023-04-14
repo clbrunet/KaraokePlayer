@@ -1,5 +1,4 @@
-#ifndef MATH_MAT4_HPP
-#define MATH_MAT4_HPP
+#pragma once
 
 struct Vec2;
 
@@ -24,5 +23,3 @@ struct Mat4
 
     Mat4 operator*(Mat4 const& rhs) const;
 };
-
-#endif

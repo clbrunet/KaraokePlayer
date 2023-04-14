@@ -1,5 +1,4 @@
-#ifndef KARAOKE_SYLLABE_HPP
-#define KARAOKE_SYLLABE_HPP
+#pragma once
 
 #include <cstdint>
 #include <vector>
@@ -35,5 +34,3 @@ private:
 
     uint64_t parse_ms_text(const std::string& text) const;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef KARAOKE_PAGE_HPP
-#define KARAOKE_PAGE_HPP
+#pragma once
 
 #include <vector>
 
@@ -32,5 +31,3 @@ private:
     float m_start_timing;
     float m_end_timing;
 };
-
-#endif

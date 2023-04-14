@@ -1,5 +1,4 @@
-#ifndef RENDERER_HPP
-#define RENDERER_HPP
+#pragma once
 
 #include <vector>
 
@@ -46,5 +45,3 @@ private:
     void render_syllabe(const Syllabe& syllabe, const Mat4& word_model) const;
     void render_letter(const Letter& letter, const Mat4& syllabe_model) const;
 };
-
-#endif

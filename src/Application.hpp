@@ -1,5 +1,4 @@
-#ifndef APPLICATION_HPP
-#define APPLICATION_HPP
+#pragma once
 
 #include <vector>
 
@@ -52,5 +51,3 @@ private:
     void set_projection_matrix();
     void set_projection_matrix(int window_width, int window_height);
 };
-
-#endif

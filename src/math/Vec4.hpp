@@ -1,5 +1,4 @@
-#ifndef MATH_VEC4_HPP
-#define MATH_VEC4_HPP
+#pragma once
 
 struct Vec4
 {
@@ -21,5 +20,3 @@ struct Vec4
 
     Vec4(float x, float y, float z, float w);
 };
-
-#endif
