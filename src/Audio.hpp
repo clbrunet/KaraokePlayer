@@ -6,10 +6,10 @@ class Audio
 {
 public:
     Audio() = default;
-    Audio(Audio &&) = default;
-    Audio(const Audio &) = default;
-    Audio &operator=(Audio &&) = default;
-    Audio &operator=(const Audio &) = default;
+    Audio(Audio &&) = delete;
+    Audio(const Audio &) = delete;
+    Audio &operator=(Audio &&) = delete;
+    Audio &operator=(const Audio &) = delete;
     ~Audio();
 
     bool load(const char* ogg_path, uint32_t audio_end_event);

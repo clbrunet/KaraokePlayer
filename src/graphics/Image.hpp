@@ -4,10 +4,10 @@ class Image
 {
 public:
     Image() = default;
-    Image(Image &&) = default;
-    Image(const Image &) = default;
-    Image &operator=(Image &&) = default;
-    Image &operator=(const Image &) = default;
+    Image(Image &&) = delete;
+    Image(const Image &) = delete;
+    Image &operator=(Image &&) = delete;
+    Image &operator=(const Image &) = delete;
     ~Image();
 
     Image(const char* path);

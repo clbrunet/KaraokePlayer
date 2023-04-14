@@ -12,13 +12,13 @@ Application::Application() :
     m_is_initialized(false),
     m_window(nullptr),
     m_context(nullptr),
-    m_renderer(Renderer()),
-    m_font(Font()),
+    m_renderer(),
+    m_font(),
     m_font_scale(Mat4::identity()),
     m_projection(Mat4::identity()),
-    m_karaoke(Karaoke()),
-    m_audio(Audio()),
-    m_pages_iterator(std::vector<Page>::const_iterator()),
+    m_karaoke(),
+    m_audio(),
+    m_pages_iterator(),
     m_running(false),
     m_running_time(0.0f)
 {

@@ -15,7 +15,7 @@ Page::Page(const pugi::xml_node& page_node, const Font& font) :
 }
 
 Page::Page(float start_timing, float end_timing) :
-    m_lines(std::vector<Line>()),
+    m_lines(),
     m_model(Mat4::identity()),
     m_start_timing(start_timing),
     m_end_timing(end_timing)

@@ -9,9 +9,9 @@ class Font
 {
 public:
     Font() = default;
-    Font(Font &&) = default;
+    Font(Font &&) = delete;
     Font(const Font &) = delete;
-    Font &operator=(Font &&) = default;
+    Font &operator=(Font &&) = delete;
     Font &operator=(const Font &) = delete;
     ~Font() = default;
 
@@ -29,7 +29,7 @@ public:
 
 private:
     pugi::xml_document m_doc = pugi::xml_document();
-    Image m_image = Image();
+    Image m_image;
 
     pugi::xml_node get_char_xml_node(unsigned char c) const;
 };

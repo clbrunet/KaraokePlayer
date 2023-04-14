@@ -20,9 +20,9 @@ class Renderer
 {
 public:
     Renderer() = default;
-    Renderer(Renderer &&) = default;
+    Renderer(Renderer &&) = delete;
     Renderer(const Renderer &) = delete;
-    Renderer &operator=(Renderer &&) = default;
+    Renderer &operator=(Renderer &&) = delete;
     Renderer &operator=(const Renderer &) = delete;
     ~Renderer();
 
@@ -35,8 +35,8 @@ private:
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
     unsigned int m_element_buffer = 0;
-    Program m_letter_program = Program();
-    Program m_loading_bar_program = Program();
+    Program m_letter_program;
+    Program m_loading_bar_program;
 
     void render_loading_bar(const Page& page) const;
     void render_page(const Page& page, const Mat4& font_scale) const;

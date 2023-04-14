@@ -16,9 +16,9 @@ class Application
 {
 public:
     Application();
-    Application(Application &&) = default;
+    Application(Application &&) = delete;
     Application(const Application &) = delete;
-    Application &operator=(Application &&) = default;
+    Application &operator=(Application &&) = delete;
     Application &operator=(const Application &) = delete;
     ~Application();
 
@@ -29,12 +29,12 @@ private:
     bool m_is_initialized = false;
     SDL_Window* m_window = nullptr;
     SDL_GLContext m_context = nullptr;
-    Renderer m_renderer = Renderer();
-    Font m_font = Font();
+    Renderer m_renderer;
+    Font m_font;
     Mat4 m_font_scale = Mat4::identity();
     Mat4 m_projection = Mat4::identity();
     Karaoke m_karaoke = Karaoke();
-    Audio m_audio = Audio();
+    Audio m_audio;
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
     float m_running_time = 0.0f;

@@ -11,7 +11,7 @@ class Karaoke
 public:
     Karaoke() = default;
     Karaoke(Karaoke &&) = default;
-    Karaoke(const Karaoke &) = delete;
+    Karaoke(const Karaoke &) = default;
     Karaoke &operator=(Karaoke &&) = default;
     Karaoke &operator=(const Karaoke &) = default;
     ~Karaoke() = default;

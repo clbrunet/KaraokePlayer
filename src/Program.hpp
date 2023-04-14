@@ -10,10 +10,10 @@ class Program
 {
 public:
     Program() = default;
-    Program(Program &&) = default;
-    Program(const Program &) = default;
-    Program &operator=(Program &&) = default;
-    Program &operator=(const Program &) = default;
+    Program(Program &&) = delete;
+    Program(const Program &) = delete;
+    Program &operator=(Program &&) = delete;
+    Program &operator=(const Program &) = delete;
     ~Program();
 
     bool initialize(const char* vertex_shader_path, const char* fragment_shader_path);
