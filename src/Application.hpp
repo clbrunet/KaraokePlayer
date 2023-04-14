@@ -7,7 +7,8 @@
 
 #include "Renderer.hpp"
 #include "karaoke/Letter.hpp"
-#include "karaoke/Song.hpp"
+#include "karaoke/Karaoke.hpp"
+#include "Audio.hpp"
 
 #define APPLICATION_BASE_WIDTH 800
 #define APPLICATION_BASE_HEIGHT 600
@@ -33,7 +34,8 @@ private:
     Font m_font = Font();
     Mat4 m_font_scale = Mat4::identity();
     Mat4 m_projection = Mat4::identity();
-    Song m_song = Song();
+    Karaoke m_karaoke = Karaoke();
+    Audio m_audio = Audio();
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;
     float m_running_time = 0.0f;

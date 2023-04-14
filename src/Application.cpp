@@ -16,7 +16,8 @@ Application::Application() :
     m_font(Font()),
     m_font_scale(Mat4::identity()),
     m_projection(Mat4::identity()),
-    m_song(Song()),
+    m_karaoke(Karaoke()),
+    m_audio(Audio()),
     m_pages_iterator(std::vector<Page>::const_iterator()),
     m_running(false),
     m_running_time(0.0f)
@@ -39,11 +40,15 @@ Application::Application() :
     }
     m_font_scale = Mat4::identity().scale(8.0f);
     set_projection_matrix();
-    if (!m_song.load("assets/song.xml", m_font, "assets/song.ogg", m_audio_end_event))
+    if (!m_karaoke.load("assets/song.xml", m_font))
     {
         return;
     }
-    m_pages_iterator = m_song.pages().cbegin();
+    if (!m_audio.load("assets/song.ogg", m_audio_end_event))
+    {
+        return;
+    }
+    m_pages_iterator = m_karaoke.pages().cbegin();
 
     m_is_initialized = true;
 }
@@ -130,7 +135,7 @@ void Application::run()
         }
         m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
-        const Page* page = (m_pages_iterator != m_song.pages().cend())
+        const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
             ? &*m_pages_iterator : nullptr;
         m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
         SDL_GL_SwapWindow(m_window);
@@ -183,7 +188,7 @@ void Application::handle_events_keydown(SDL_Event event)
 
 void Application::update()
 {
-    if (m_pages_iterator != m_song.pages().cend()
+    if (m_pages_iterator != m_karaoke.pages().cend()
         && m_pages_iterator->end_timing() < m_running_time)
     {
         m_pages_iterator++;
