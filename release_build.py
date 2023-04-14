@@ -12,6 +12,8 @@ def main():
     os.makedirs(release_build_dir, exist_ok=True)
     subprocess.check_call('cmake -DCMAKE_BUILD_TYPE=Release -B ' + release_build_dir, shell=True)
     subprocess.check_call('cmake --build .', shell=True, cwd=release_build_dir)
+    subprocess.check_call('cp -r assets ' + release_build_dir, shell=True)
+    subprocess.check_call('cp -r shaders ' + release_build_dir, shell=True)
 
 if __name__ == '__main__':
     main()
