@@ -24,11 +24,14 @@ public:
     int letters_count() const;
     int spaces_count() const;
     const Mat4& model() const;
-    float get_end_second() const;
+    float start_timing() const;
+    float end_timing() const;
 
 private:
     std::vector<Word> m_words;
     Mat4 m_model;
+    float m_start_timing;
+    float m_end_timing;
 };
 
 #endif

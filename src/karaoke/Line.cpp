@@ -4,7 +4,9 @@
 #include "Renderer.hpp"
 
 Line::Line(const pugi::xml_node& line_node, const Font& font) :
-    m_model(Mat4::identity())
+    m_model(Mat4::identity()),
+    m_start_timing(0.0f),
+    m_end_timing(0.0f)
 {
     for (pugi::xml_node word_node : line_node)
     {
@@ -32,10 +34,16 @@ void Line::set_models(float local_position)
 
 void Line::set_timings()
 {
+    if (m_words.size() == 0)
+    {
+        return;
+    }
     for (Word& word : m_words)
     {
         word.set_timings();
     }
+    m_start_timing = m_words.front().start_timing();
+    m_end_timing = m_words.back().end_timing();
 }
 
 const std::vector<Word>& Line::words() const
@@ -67,11 +75,12 @@ const Mat4& Line::model() const
     return m_model;
 }
 
-float Line::get_end_second() const
+float Line::start_timing() const
 {
-    if (m_words.size() == 0)
-    {
-        return 0.0f;
-    }
-    return m_words.back().get_end_second();
+    return m_start_timing;
+}
+
+float Line::end_timing() const
+{
+    return m_end_timing;
 }

@@ -5,10 +5,12 @@
 #include "karaoke/Syllabe.hpp"
 
 Syllabe::Syllabe(const pugi::xml_node& syllabe_node, const Font& font) :
-    m_model(Mat4::identity())
+    m_model(Mat4::identity()),
+    m_start_timing(0.0f),
+    m_end_timing(0.0f)
 {
-    m_start_second = (float)parse_ms_text(syllabe_node.child("start").text().get()) / 1000.0f;
-    m_end_second = (float)parse_ms_text(syllabe_node.child("end").text().get()) / 1000.0f;
+    m_start_timing = (float)parse_ms_text(syllabe_node.child("start").text().get()) / 1000.0f;
+    m_end_timing = (float)parse_ms_text(syllabe_node.child("end").text().get()) / 1000.0f;
 
     const unsigned char* chars = (const unsigned char*)syllabe_node.child("text").text().get();
     while (*chars != '\0')
@@ -34,8 +36,12 @@ void Syllabe::set_models(float local_position)
 
 void Syllabe::set_timings()
 {
-    float timing = m_start_second;
-    float letter_duration = (m_end_second - m_start_second) / letters_count();
+    if (m_letters.size() == 0)
+    {
+        return;
+    }
+    float timing = m_start_timing;
+    float letter_duration = (m_end_timing - m_start_timing) / letters_count();
     for (Letter& letter : m_letters)
     {
         letter.set_timings(timing, timing + letter_duration);
@@ -58,9 +64,14 @@ const Mat4& Syllabe::model() const
     return m_model;
 }
 
-float Syllabe::get_end_second() const
+float Syllabe::start_timing() const
 {
-    return m_end_second;
+    return m_start_timing;
+}
+
+float Syllabe::end_timing() const
+{
+    return m_end_timing;
 }
 
 uint64_t Syllabe::parse_ms_text(const std::string& text) const

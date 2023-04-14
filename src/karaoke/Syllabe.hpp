@@ -24,11 +24,12 @@ public:
     const std::vector<Letter>& letters() const;
     int letters_count() const;
     const Mat4& model() const;
-    float get_end_second() const;
+    float start_timing() const;
+    float end_timing() const;
 
 private:
-    float m_start_second;
-    float m_end_second;
+    float m_start_timing;
+    float m_end_timing;
     std::vector<Letter> m_letters;
     Mat4 m_model;
 

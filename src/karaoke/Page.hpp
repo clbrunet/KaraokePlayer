@@ -22,11 +22,14 @@ public:
 
     const std::vector<Line>& lines() const;
     const Mat4& model() const;
-    float get_end_second() const;
+    float start_timing() const;
+    float end_timing() const;
 
 private:
     std::vector<Line> m_lines;
     Mat4 m_model;
+    float m_start_timing;
+    float m_end_timing;
 };
 
 #endif

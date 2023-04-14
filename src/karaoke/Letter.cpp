@@ -5,7 +5,9 @@
 
 Letter::Letter(const Font& font, unsigned char c) :
     m_char_texture_coordinates(font.get_char_texture_coordinates(c)),
-    m_model(Mat4::identity())
+    m_model(Mat4::identity()),
+    m_start_timing(0.0f),
+    m_end_timing(0.0f)
 {
 }
 

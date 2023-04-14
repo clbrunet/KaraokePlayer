@@ -4,7 +4,9 @@
 #include "karaoke/Word.hpp"
 
 Word::Word(const pugi::xml_node& word_node, const Font& font) :
-    m_model(Mat4::identity())
+    m_model(Mat4::identity()),
+    m_start_timing(0.0f),
+    m_end_timing(0.0f)
 {
     for (pugi::xml_node syllabe_node : word_node)
     {
@@ -31,10 +33,16 @@ void Word::set_models(float local_position)
 
 void Word::set_timings()
 {
+    if (m_syllabes.size() == 0)
+    {
+        return;
+    }
     for (Syllabe& syllabe : m_syllabes)
     {
         syllabe.set_timings();
     }
+    m_start_timing = m_syllabes.front().start_timing();
+    m_end_timing = m_syllabes.back().end_timing();
 }
 
 const std::vector<Syllabe>& Word::syllabes() const
@@ -57,11 +65,12 @@ const Mat4& Word::model() const
     return m_model;
 }
 
-float Word::get_end_second() const
+float Word::start_timing() const
 {
-    if (m_syllabes.size() == 0)
-    {
-        return 0.0f;
-    }
-    return m_syllabes.back().get_end_second();
+    return m_start_timing;
+}
+
+float Word::end_timing() const
+{
+    return m_end_timing;
 }

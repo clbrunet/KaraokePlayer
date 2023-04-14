@@ -4,7 +4,9 @@
 #include "karaoke/Page.hpp"
 
 Page::Page(const pugi::xml_node& page_node, const Font& font) :
-    m_model(Mat4::identity())
+    m_model(Mat4::identity()),
+    m_start_timing(0.0f),
+    m_end_timing(0.0f)
 {
     for (pugi::xml_node line_node : page_node)
     {
@@ -30,10 +32,16 @@ void Page::set_models(Vec2 page_translation)
 
 void Page::set_timings()
 {
+    if (m_lines.size() == 0)
+    {
+        return;
+    }
     for (Line& line : m_lines)
     {
         line.set_timings();
     }
+    m_start_timing = m_lines.front().start_timing();
+    m_end_timing = m_lines.back().end_timing();
 }
 
 const std::vector<Line>& Page::lines() const
@@ -46,11 +54,12 @@ const Mat4& Page::model() const
     return m_model;
 }
 
-float Page::get_end_second() const
+float Page::start_timing() const
 {
-    if (m_lines.size() == 0)
-    {
-        return 0.0f;
-    }
-    return m_lines.back().get_end_second();
+    return m_start_timing;
+}
+
+float Page::end_timing() const
+{
+    return m_end_timing;
 }

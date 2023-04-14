@@ -184,7 +184,7 @@ void Application::handle_events_keydown(SDL_Event event)
 void Application::update()
 {
     if (m_pages_iterator != m_song.pages().cend()
-        && m_pages_iterator->get_end_second() < m_running_time)
+        && m_pages_iterator->end_timing() < m_running_time)
     {
         m_pages_iterator++;
     }
