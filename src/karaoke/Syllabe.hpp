@@ -18,7 +18,7 @@ public:
 
     Syllabe(const pugi::xml_node& syllabe_node, const Font& font);
 
-    void set_models(float position);
+    void set_models(float local_position);
     void set_timings();
 
     const std::vector<Letter>& letters() const;

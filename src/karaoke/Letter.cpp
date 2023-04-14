@@ -9,9 +9,9 @@ Letter::Letter(const Font& font, unsigned char c) :
 {
 }
 
-void Letter::set_model(float position)
+void Letter::set_model(float local_position)
 {
-    m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
+    m_model.translate(Vec2(local_position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 void Letter::set_timings(float start_timing, float end_timing)
@@ -20,12 +20,12 @@ void Letter::set_timings(float start_timing, float end_timing)
     m_end_timing = end_timing;
 }
 
-Vec2 Letter::texture_bottom_left() const
+Vec2 Letter::texture_coordinates_bottom_left() const
 {
     return m_char_texture_coordinates.bottom_left;
 }
 
-Vec2 Letter::texture_top_right() const
+Vec2 Letter::texture_coordinates_top_right() const
 {
     return m_char_texture_coordinates.top_right;
 }

@@ -13,6 +13,5 @@ int main(int argc, char** argv)
         return -1;
     }
     application.run();
-
     return 0;
 }

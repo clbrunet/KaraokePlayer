@@ -12,21 +12,21 @@ Line::Line(const pugi::xml_node& line_node, const Font& font) :
     }
 }
 
-void Line::set_models(float position)
+void Line::set_models(float local_position)
 {
     int letters_count = this->letters_count();
     int spaces_count = this->spaces_count();
     float space_width = (float)SPACE_BASE_WIDTH / (float)LETTER_BASE_WIDTH;
     float spaces_width = (float)spaces_count * space_width;
-    float word_start_position = -(((float)letters_count + spaces_width) / 2.0f) + 0.5f;
+    float word_start_local_position = -(((float)letters_count + spaces_width) / 2.0f) + 0.5f;
     for (Word& word : m_words)
     {
-        float word_position = word_start_position
+        float word_local_position = word_start_local_position
             + ((float)word.letters_count() / 2.0f) - 0.5f;
-        word.set_models(word_position);
-        word_start_position += space_width + word.letters_count();
+        word.set_models(word_local_position);
+        word_start_local_position += space_width + word.letters_count();
     }
-    m_model.translate(Vec2(0.0f, -position * LETTER_BASE_HEIGHT));
+    m_model.translate(Vec2(0.0f, -local_position * LETTER_BASE_HEIGHT));
 }
 
 void Line::set_timings()

@@ -12,18 +12,18 @@ Word::Word(const pugi::xml_node& word_node, const Font& font) :
     }
 }
 
-void Word::set_models(float position)
+void Word::set_models(float local_position)
 {
     int letters_count = this->letters_count();
-    float syllabe_start_position = -((float)letters_count / 2.0f) + 0.5f;
+    float syllabe_start_local_position = -((float)letters_count / 2.0f) + 0.5f;
     for (Syllabe& syllabe : m_syllabes)
     {
-        float syllabe_position = syllabe_start_position
+        float syllabe_local_position = syllabe_start_local_position
             + ((float)syllabe.letters().size() / 2.0f) - 0.5f;
-        syllabe.set_models(syllabe_position);
-        syllabe_start_position += syllabe.letters().size();
+        syllabe.set_models(syllabe_local_position);
+        syllabe_start_local_position += syllabe.letters().size();
     }
-    m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
+    m_model.translate(Vec2(local_position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 void Word::set_timings()

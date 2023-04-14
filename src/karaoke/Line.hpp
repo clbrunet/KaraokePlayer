@@ -17,7 +17,7 @@ public:
 
     Line(const pugi::xml_node& line_node, const Font& font);
 
-    void set_models(float position);
+    void set_models(float local_position);
     void set_timings();
 
     const std::vector<Word>& words() const;

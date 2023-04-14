@@ -9,6 +9,7 @@ Syllabe::Syllabe(const pugi::xml_node& syllabe_node, const Font& font) :
 {
     m_start_second = (float)parse_ms_text(syllabe_node.child("start").text().get()) / 1000.0f;
     m_end_second = (float)parse_ms_text(syllabe_node.child("end").text().get()) / 1000.0f;
+
     const unsigned char* chars = (const unsigned char*)syllabe_node.child("text").text().get();
     while (*chars != '\0')
     {
@@ -17,15 +18,15 @@ Syllabe::Syllabe(const pugi::xml_node& syllabe_node, const Font& font) :
     }
 }
 
-void Syllabe::set_models(float position)
+void Syllabe::set_models(float local_position)
 {
-    float letter_position = -((float)m_letters.size() / 2.0f) + 0.5f;
+    float letter_local_position = -((float)m_letters.size() / 2.0f) + 0.5f;
     for (Letter& letter : m_letters)
     {
-        letter.set_model(letter_position);
-        letter_position += 1.0f;
+        letter.set_model(letter_local_position);
+        letter_local_position += 1.0f;
     }
-    m_model.translate(Vec2(position * LETTER_BASE_WIDTH, 0.0f));
+    m_model.translate(Vec2(local_position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 void Syllabe::set_timings()

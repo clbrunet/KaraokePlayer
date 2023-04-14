@@ -119,8 +119,10 @@ void Renderer::render_syllabe(const Syllabe& syllabe, const Mat4& word_model) co
 
 void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) const
 {
-    m_program.set_uniform_vec2("char_texture_bottom_left", letter.texture_bottom_left());
-    m_program.set_uniform_vec2("char_texture_top_right", letter.texture_top_right());
+    m_program.set_uniform_vec2("char_texture_bottom_left",
+            letter.texture_coordinates_bottom_left());
+    m_program.set_uniform_vec2("char_texture_top_right",
+            letter.texture_coordinates_top_right());
     m_program.set_uniform_mat4("model", syllabe_model * letter.model());
     m_program.set_uniform_float("letter_start_timing", letter.start_timing());
     m_program.set_uniform_float("letter_end_timing", letter.end_timing());
