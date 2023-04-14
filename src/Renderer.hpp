@@ -36,8 +36,10 @@ private:
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
     unsigned int m_element_buffer = 0;
-    Program m_program = Program();
+    Program m_letter_program = Program();
+    Program m_loading_bar_program = Program();
 
+    void render_loading_bar(const Page& page) const;
     void render_page(const Page& page, const Mat4& font_scale) const;
     void render_line(const Line& line, const Mat4& page_model, const Mat4& font_scale) const;
     void render_word(const Word& word, const Mat4& line_model) const;

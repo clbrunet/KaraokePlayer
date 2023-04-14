@@ -22,13 +22,20 @@ bool Renderer::initialize()
 {
     glClearColor(0.3f, 0.1f, 0.7f, 1.0f);
     initialize_OpenGL_objects();
-    if (!m_program.initialize("shaders/karaoke.vert", "shaders/karaoke.frag"))
+    Vec4 already_sung_text_color(1.0f, 0.6f, 0.0f, 1.0f);
+    if (!m_letter_program.initialize("shaders/karaoke.vert", "shaders/karaoke.frag"))
     {
         return false;
     }
-    m_program.use();
-    m_program.set_uniform_int("sampler", 0);
-    m_program.set_uniform_vec4("already_sung_text_color", Vec4(1.0f, 0.6f, 0.0f, 1.0f));
+    m_letter_program.use();
+    m_letter_program.set_uniform_int("sampler", 0);
+    m_letter_program.set_uniform_vec4("already_sung_text_color", already_sung_text_color);
+    if (!m_loading_bar_program.initialize("shaders/loading_bar.vert", "shaders/loading_bar.frag"))
+    {
+        return false;
+    }
+    m_loading_bar_program.use();
+    m_loading_bar_program.set_uniform_vec4("already_sung_text_color", already_sung_text_color);
     return true;
 }
 
@@ -76,13 +83,37 @@ void Renderer::render(const Font& font, const Page* page, float running_time,
     {
         return;
     }
-    m_program.use();
+    const Program* program;
+    if (page->lines().size() == 0)
+    {
+        program = &m_loading_bar_program;
+    }
+    else
+    {
+        program = &m_letter_program;
+    }
+    glBindVertexArray(m_vertex_array);
+    program->use();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, font.image().texture());
-    glBindVertexArray(m_vertex_array);
-    m_program.set_uniform_float("running_time", running_time);
-    m_program.set_uniform_mat4("projection", projection);
-    render_page(*page, font_scale);
+    program->set_uniform_float("running_time", running_time);
+    program->set_uniform_mat4("projection", projection);
+    if (page->lines().size() == 0)
+    {
+        render_loading_bar(*page);
+    }
+    else
+    {
+        render_page(*page, font_scale);
+    }
+}
+
+void Renderer::render_loading_bar(const Page& page) const
+{
+    m_loading_bar_program.set_uniform_mat4("scale", Mat4::identity().scale(200.0f, 5.0f, 1.0f));
+    m_loading_bar_program.set_uniform_float("start_timing", page.start_timing());
+    m_loading_bar_program.set_uniform_float("end_timing", page.end_timing());
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void Renderer::render_page(const Page& page, const Mat4& font_scale) const
@@ -119,12 +150,12 @@ void Renderer::render_syllabe(const Syllabe& syllabe, const Mat4& word_model) co
 
 void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) const
 {
-    m_program.set_uniform_vec2("char_texture_bottom_left",
+    m_letter_program.set_uniform_vec2("char_texture_bottom_left",
             letter.texture_coordinates_bottom_left());
-    m_program.set_uniform_vec2("char_texture_top_right",
+    m_letter_program.set_uniform_vec2("char_texture_top_right",
             letter.texture_coordinates_top_right());
-    m_program.set_uniform_mat4("model", syllabe_model * letter.model());
-    m_program.set_uniform_float("letter_start_timing", letter.start_timing());
-    m_program.set_uniform_float("letter_end_timing", letter.end_timing());
+    m_letter_program.set_uniform_mat4("model", syllabe_model * letter.model());
+    m_letter_program.set_uniform_float("letter_start_timing", letter.start_timing());
+    m_letter_program.set_uniform_float("letter_end_timing", letter.end_timing());
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

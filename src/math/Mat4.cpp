@@ -60,6 +60,14 @@ Mat4& Mat4::scale(float factor)
     return *this;
 }
 
+Mat4& Mat4::scale(float x, float y, float z)
+{
+    array[0][0] *= x;
+    array[1][1] *= y;
+    array[2][2] *= z;
+    return *this;
+}
+
 Mat4& Mat4::translate(Vec2 vec2)
 {
     array[0][3] += vec2.x;
