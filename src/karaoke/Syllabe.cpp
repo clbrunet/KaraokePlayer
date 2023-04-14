@@ -20,19 +20,22 @@ Syllabe::Syllabe(const pugi::xml_node& syllabe_node, const Font& font) :
 
 void Syllabe::set_models(float local_position)
 {
-    float letter_local_position = -((float)m_letters.size() / 2.0f) + 0.5f;
+    m_model.translate(Vec2(local_position, 0.0f));
+
+    // spread letter positions around 0
+    float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;
+    float letter_local_position = (letters_width - LETTER_BASE_WIDTH) * -0.5f;
     for (Letter& letter : m_letters)
     {
         letter.set_model(letter_local_position);
-        letter_local_position += 1.0f;
+        letter_local_position += LETTER_BASE_WIDTH;
     }
-    m_model.translate(Vec2(local_position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 void Syllabe::set_timings()
 {
     float timing = m_start_second;
-    float letter_duration = (m_end_second - m_start_second) / m_letters.size();
+    float letter_duration = (m_end_second - m_start_second) / letters_count();
     for (Letter& letter : m_letters)
     {
         letter.set_timings(timing, timing + letter_duration);
@@ -43,6 +46,11 @@ void Syllabe::set_timings()
 const std::vector<Letter>& Syllabe::letters() const
 {
     return m_letters;
+}
+
+int Syllabe::letters_count() const
+{
+    return m_letters.size();
 }
 
 const Mat4& Syllabe::model() const

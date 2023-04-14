@@ -14,16 +14,19 @@ Word::Word(const pugi::xml_node& word_node, const Font& font) :
 
 void Word::set_models(float local_position)
 {
-    int letters_count = this->letters_count();
-    float syllabe_start_local_position = -((float)letters_count / 2.0f) + 0.5f;
+    m_model.translate(Vec2(local_position, 0.0f));
+
+    // spread syllabe positions around 0
+    float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;
+    float syllabe_start_local_position = (letters_width - LETTER_BASE_WIDTH) * -0.5f;
     for (Syllabe& syllabe : m_syllabes)
     {
+        float syllabe_letters_width = (float)syllabe.letters_count() * LETTER_BASE_WIDTH;
         float syllabe_local_position = syllabe_start_local_position
-            + ((float)syllabe.letters().size() / 2.0f) - 0.5f;
+            + 0.5f * (syllabe_letters_width - LETTER_BASE_WIDTH);
         syllabe.set_models(syllabe_local_position);
-        syllabe_start_local_position += syllabe.letters().size();
+        syllabe_start_local_position += syllabe_letters_width;
     }
-    m_model.translate(Vec2(local_position * LETTER_BASE_WIDTH, 0.0f));
 }
 
 void Word::set_timings()
@@ -44,7 +47,7 @@ int Word::letters_count() const
     int letters_count = 0;
     for (const Syllabe& syllabe : m_syllabes)
     {
-        letters_count += syllabe.letters().size();
+        letters_count += syllabe.letters_count();
     }
     return letters_count;
 }

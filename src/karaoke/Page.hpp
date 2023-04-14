@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Line.hpp"
+#include "karaoke/Line.hpp"
 
 class Page
 {

@@ -22,6 +22,7 @@ public:
     void set_timings();
 
     const std::vector<Letter>& letters() const;
+    int letters_count() const;
     const Mat4& model() const;
     float get_end_second() const;
 

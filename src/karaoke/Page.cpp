@@ -13,13 +13,15 @@ Page::Page(const pugi::xml_node& page_node, const Font& font)
 
 void Page::set_models()
 {
+    // spread line positions around 0
     int lines_count = m_lines.size();
-    float spacing_height = (float)LINE_SPACING / (float)LETTER_BASE_HEIGHT;
-    float line_local_position = -((float)lines_count / 2.0f) + 0.5f;
+    float lines_height = (float)lines_count * LETTER_BASE_HEIGHT;
+    float spacings_height = (float)(lines_count - 1) * LINES_SPACING_BASE_HEIGHT;
+    float line_local_position = (lines_height - LETTER_BASE_HEIGHT + spacings_height) * 0.5f;
     for (Line& line : m_lines)
     {
-        line.set_models(line_local_position + line_local_position * spacing_height);
-        line_local_position += 1.0f;
+        line.set_models(line_local_position);
+        line_local_position -= LINES_SPACING_BASE_HEIGHT + LETTER_BASE_HEIGHT;
     }
 }
 

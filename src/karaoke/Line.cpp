@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Line.hpp"
+#include "karaoke/Line.hpp"
 #include "Renderer.hpp"
 
 Line::Line(const pugi::xml_node& line_node, const Font& font) :
@@ -14,19 +14,20 @@ Line::Line(const pugi::xml_node& line_node, const Font& font) :
 
 void Line::set_models(float local_position)
 {
-    int letters_count = this->letters_count();
-    int spaces_count = this->spaces_count();
-    float space_width = (float)SPACE_BASE_WIDTH / (float)LETTER_BASE_WIDTH;
-    float spaces_width = (float)spaces_count * space_width;
-    float word_start_local_position = -(((float)letters_count + spaces_width) / 2.0f) + 0.5f;
+    m_model.translate(Vec2(0.0f, local_position));
+
+    // spread word positions around 0
+    float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;
+    float spaces_width = (float)spaces_count() * WORDS_SPACING_BASE_WIDTH;
+    float word_start_local_position = (letters_width - LETTER_BASE_WIDTH + spaces_width) * -0.5f;
     for (Word& word : m_words)
     {
+        float word_letters_width = (float)word.letters_count() * LETTER_BASE_WIDTH;
         float word_local_position = word_start_local_position
-            + ((float)word.letters_count() / 2.0f) - 0.5f;
+            + 0.5f * (word_letters_width - LETTER_BASE_WIDTH);
         word.set_models(word_local_position);
-        word_start_local_position += space_width + word.letters_count();
+        word_start_local_position += WORDS_SPACING_BASE_WIDTH + word_letters_width;
     }
-    m_model.translate(Vec2(0.0f, -local_position * LETTER_BASE_HEIGHT));
 }
 
 void Line::set_timings()
