@@ -9,8 +9,8 @@
 #include "karaoke/Letter.hpp"
 #include "karaoke/Song.hpp"
 
-#define APPLICATION_WIDTH 800
-#define APPLICATION_HEIGHT 600
+#define APPLICATION_BASE_WIDTH 800
+#define APPLICATION_BASE_HEIGHT 600
 
 class Application
 {

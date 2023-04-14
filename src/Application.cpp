@@ -63,7 +63,7 @@ bool Application::initialize_SDL()
 
     m_window = SDL_CreateWindow("Karaoke Player",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-            APPLICATION_WIDTH, APPLICATION_HEIGHT,
+            APPLICATION_BASE_WIDTH, APPLICATION_BASE_HEIGHT,
             SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!m_window)
     {
@@ -97,7 +97,7 @@ bool Application::initialize_OpenGL()
         std::cerr << "Coundl't initialize glad." << std::endl;
         return false;
     }
-    glViewport(0, 0, APPLICATION_WIDTH, APPLICATION_HEIGHT);
+    glViewport(0, 0, APPLICATION_BASE_WIDTH, APPLICATION_BASE_HEIGHT);
     return true;
 }
 
