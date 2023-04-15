@@ -2,6 +2,7 @@
 
 in vec2 v_position;
 
+uniform float first_syllabe_start_timing;
 uniform float running_time;
 
 out vec4 out_color;
@@ -11,9 +12,14 @@ float snoise(vec2 v);
 
 void main()
 {
+    float start_noise_scale = 3;
+    float target_noise_scale = 1;
+    float noise_scale_interpolation = smoothstep(0.0, first_syllabe_start_timing, running_time);
+    float noise_scale = mix(start_noise_scale, target_noise_scale, noise_scale_interpolation);
+
     vec4 color1 = vec4(0.3, 0.3, 0.9, 1.0);
     vec4 color2 = vec4(0.1, 0.1, 0.7, 1.0);
-    float interpolation = snoise(v_position * 1) * 0.5 + 0.5;
+    float interpolation = snoise(v_position * noise_scale) * 0.5 + 0.5;
     out_color = mix(color1, color2, interpolation);
 }
 

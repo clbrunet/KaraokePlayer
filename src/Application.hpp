@@ -35,7 +35,7 @@ private:
     Font m_font;
     Mat4 m_font_scale = Mat4::identity();
     Mat4 m_projection = Mat4::identity();
-    Karaoke m_karaoke = Karaoke();
+    Karaoke m_karaoke;
     Audio m_audio;
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_running = false;

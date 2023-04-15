@@ -21,11 +21,16 @@ bool Karaoke::load(const char* xml_path, const Font& font)
     {
         m_pages.push_back(Page(page_node, font));
     }
+    if (m_pages.size() == 0)
+    {
+        return true;
+    }
     for (Page& page : m_pages)
     {
         page.set_models(Vec2::zero());
         page.set_timings();
     }
+    m_first_syllabe_start_timing = m_pages.front().start_timing();
     add_empty_pages();
     return true;
 }
@@ -33,6 +38,11 @@ bool Karaoke::load(const char* xml_path, const Font& font)
 const std::vector<Page>& Karaoke::pages() const
 {
     return m_pages;
+}
+
+float Karaoke::first_syllabe_start_timing() const
+{
+    return m_first_syllabe_start_timing;
 }
 
 void Karaoke::add_empty_pages()

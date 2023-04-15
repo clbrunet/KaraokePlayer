@@ -21,9 +21,11 @@ public:
     bool load(const char* xml_path, const Font& font);
 
     const std::vector<Page>& pages() const;
+    float first_syllabe_start_timing() const;
 
 private:
     std::vector<Page> m_pages;
+    float m_first_syllabe_start_timing = 0.0f;
 
     void add_empty_pages();
 };

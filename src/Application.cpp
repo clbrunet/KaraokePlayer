@@ -140,7 +140,7 @@ void Application::run()
         }
         m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
-        m_background_renderer.render(m_running_time);
+        m_background_renderer.render(m_karaoke.first_syllabe_start_timing(), m_running_time);
         const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
             ? &*m_pages_iterator : nullptr;
         m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
