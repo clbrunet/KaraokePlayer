@@ -2,10 +2,6 @@
 
 in vec2 v_noise_coordinates;
 
-uniform float first_syllabe_start_timing;
-uniform float running_time;
-uniform float noise_y_offset;
-
 out vec4 out_color;
 
 // simplex noise function from https://github.com/ashima/webgl-noise
@@ -13,15 +9,9 @@ float snoise(vec2 v);
 
 void main()
 {
-    float start_noise_scale = 3;
-    float target_noise_scale = 1;
-    float noise_scale_interpolation = smoothstep(0.0, first_syllabe_start_timing, running_time);
-    float noise_scale = mix(start_noise_scale, target_noise_scale, noise_scale_interpolation);
-
     vec4 color1 = vec4(0.3, 0.3, 0.9, 1.0);
     vec4 color2 = vec4(0.1, 0.1, 0.7, 1.0);
-    float interpolation = snoise(v_noise_coordinates * noise_scale + vec2(0.0f, noise_y_offset))
-        * 0.5 + 0.5;
+    float interpolation = snoise(v_noise_coordinates) * 0.5 + 0.5;
     out_color = mix(color1, color2, interpolation);
 }
 
