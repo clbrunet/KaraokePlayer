@@ -7,6 +7,7 @@
 #include "math/Vec2.hpp"
 #include "math/Vec4.hpp"
 #include "math/Mat4.hpp"
+#include "math/utils.hpp"
 #include "karaoke/Letter.hpp"
 #include "karaoke/Page.hpp"
 #include "karaoke/Syllabe.hpp"
@@ -66,23 +67,20 @@ void BackgroundRenderer::initialize_OpenGL_objects()
 
 void BackgroundRenderer::update(const Karaoke& karaoke, float running_time, float delta_time)
 {
-    float diff = running_time - (karaoke.first_syllabe_start_timing()
-            - NOISE_Y_OFFSET_START_SPEED_UP_DURATION);
-    if (diff < 0.0f)
+    if (running_time
+        - (karaoke.first_syllabe_start_timing() - NOISE_Y_OFFSET_START_SPEED_UP_DURATION) < 0.0f)
     {
         return;
     }
-    if (diff > 1.0f)
-    {
-        diff = 1.0f;
-    }
-    float speed = diff * NOISE_Y_OFFSET_NORMAL_SPEED;
+    float desired_speed = NOISE_Y_OFFSET_NORMAL_SPEED;
     float speech_rate = karaoke.get_speech_rate(running_time);
     if (speech_rate > 0.0f)
     {
-        speed *= speech_rate / 5.0f;
+        desired_speed *= speech_rate / 5.0f;
     }
-    m_noise_y_offset += speed * delta_time;
+    m_noise_y_offset_speed = advance_towards(m_noise_y_offset_speed, desired_speed,
+            NOISE_Y_OFFSET_ACCELERATION * delta_time);
+    m_noise_y_offset += m_noise_y_offset_speed * delta_time;
 }
 
 void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_timing,
