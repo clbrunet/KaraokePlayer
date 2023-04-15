@@ -63,6 +63,23 @@ void BackgroundRenderer::initialize_OpenGL_objects()
     glEnableVertexAttribArray(0);
 }
 
+void BackgroundRenderer::update(float first_syllabe_start_timing,
+        float running_time, float delta_time)
+{
+    float diff = running_time - (first_syllabe_start_timing
+            - NOISE_Y_OFFSET_START_SPEED_UP_DURATION);
+    if (diff < 0.0f)
+    {
+        return;
+    }
+    if (diff > 1.0f)
+    {
+        diff = 1.0f;
+    }
+    float speed = diff * NOISE_Y_OFFSET_NORMAL_SPEED;
+    m_noise_y_offset += speed * delta_time;
+}
+
 void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_timing,
         float running_time) const
 {
@@ -72,5 +89,6 @@ void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_ti
     m_program.set_uniform_float("aspect_ratio", aspect_ratio);
     m_program.set_uniform_float("first_syllabe_start_timing", first_syllabe_start_timing);
     m_program.set_uniform_float("running_time", running_time);
+    m_program.set_uniform_float("noise_y_offset", m_noise_y_offset);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

@@ -140,8 +140,10 @@ void Application::run()
         {
             break;
         }
-        m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
-        update();
+        float new_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
+        float delta_time = new_running_time - m_running_time;
+        m_running_time = new_running_time;
+        update(delta_time);
         m_background_renderer.render(m_aspect_ratio, m_karaoke.first_syllabe_start_timing(),
                 m_running_time);
         const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
@@ -196,13 +198,15 @@ void Application::handle_events_keydown(SDL_Event event)
     }
 }
 
-void Application::update()
+void Application::update(float delta_time)
 {
     if (m_pages_iterator != m_karaoke.pages().cend()
         && m_pages_iterator->end_timing() < m_running_time)
     {
         m_pages_iterator++;
     }
+    m_background_renderer.update(m_karaoke.first_syllabe_start_timing(),
+            m_running_time, delta_time);
 }
 
 void Application::set_projection_matrix()
