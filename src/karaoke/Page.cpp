@@ -71,3 +71,15 @@ float Page::end_timing() const
 {
     return m_end_timing;
 }
+
+float Page::get_speech_rate(float running_time) const
+{
+    for (const Line& line : m_lines)
+    {
+        if (line.start_timing() <= running_time && running_time <= line.end_timing())
+        {
+            return line.get_speech_rate(running_time);
+        }
+    }
+    return -1.0f;
+}

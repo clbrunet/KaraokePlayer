@@ -84,3 +84,15 @@ float Line::end_timing() const
 {
     return m_end_timing;
 }
+
+float Line::get_speech_rate(float running_time) const
+{
+    for (const Word& word : m_words)
+    {
+        if (word.start_timing() <= running_time && running_time <= word.end_timing())
+        {
+            return word.get_speech_rate(running_time);
+        }
+    }
+    return -1.0f;
+}

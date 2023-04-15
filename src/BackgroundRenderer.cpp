@@ -3,6 +3,7 @@
 #include <glad/gl.h>
 
 #include "BackgroundRenderer.hpp"
+#include "karaoke/Karaoke.hpp"
 #include "math/Vec2.hpp"
 #include "math/Vec4.hpp"
 #include "math/Mat4.hpp"
@@ -63,10 +64,9 @@ void BackgroundRenderer::initialize_OpenGL_objects()
     glEnableVertexAttribArray(0);
 }
 
-void BackgroundRenderer::update(float first_syllabe_start_timing,
-        float running_time, float delta_time)
+void BackgroundRenderer::update(const Karaoke& karaoke, float running_time, float delta_time)
 {
-    float diff = running_time - (first_syllabe_start_timing
+    float diff = running_time - (karaoke.first_syllabe_start_timing()
             - NOISE_Y_OFFSET_START_SPEED_UP_DURATION);
     if (diff < 0.0f)
     {
@@ -77,6 +77,11 @@ void BackgroundRenderer::update(float first_syllabe_start_timing,
         diff = 1.0f;
     }
     float speed = diff * NOISE_Y_OFFSET_NORMAL_SPEED;
+    float speech_rate = karaoke.get_speech_rate(running_time);
+    if (speech_rate > 0.0f)
+    {
+        speed *= speech_rate / 5.0f;
+    }
     m_noise_y_offset += speed * delta_time;
 }
 

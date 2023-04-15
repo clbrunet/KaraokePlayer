@@ -24,6 +24,7 @@ public:
     const Mat4& model() const;
     float start_timing() const;
     float end_timing() const;
+    float get_speech_rate(float running_time) const;
 
 private:
     std::vector<Syllabe> m_syllabes;

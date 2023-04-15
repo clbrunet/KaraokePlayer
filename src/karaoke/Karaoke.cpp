@@ -45,6 +45,18 @@ float Karaoke::first_syllabe_start_timing() const
     return m_first_syllabe_start_timing;
 }
 
+float Karaoke::get_speech_rate(float running_time) const
+{
+    for (const Page& page : m_pages)
+    {
+        if (page.start_timing() <= running_time && running_time <= page.end_timing())
+        {
+            return page.get_speech_rate(running_time);
+        }
+    }
+    return -1.0f;
+}
+
 void Karaoke::add_empty_pages()
 {
     constexpr float PAGES_TIMINGS_DIFF_MINIMUM = 5.0f;

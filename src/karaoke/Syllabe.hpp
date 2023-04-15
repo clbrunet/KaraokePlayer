@@ -25,6 +25,7 @@ public:
     const Mat4& model() const;
     float start_timing() const;
     float end_timing() const;
+    float get_speech_rate() const;
 
 private:
     float m_start_timing;

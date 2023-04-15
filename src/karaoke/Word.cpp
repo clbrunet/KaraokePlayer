@@ -74,3 +74,15 @@ float Word::end_timing() const
 {
     return m_end_timing;
 }
+
+float Word::get_speech_rate(float running_time) const
+{
+    for (const Syllabe& syllabe : m_syllabes)
+    {
+        if (syllabe.start_timing() <= running_time && running_time <= syllabe.end_timing())
+        {
+            return syllabe.get_speech_rate();
+        }
+    }
+    return -1.0f;
+}

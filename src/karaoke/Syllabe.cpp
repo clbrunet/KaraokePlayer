@@ -74,6 +74,11 @@ float Syllabe::end_timing() const
     return m_end_timing;
 }
 
+float Syllabe::get_speech_rate() const
+{
+    return letters_count() / (m_end_timing - m_start_timing);
+}
+
 uint64_t Syllabe::parse_ms_text(const std::string& text)
 {
     std::istringstream isstream(text);

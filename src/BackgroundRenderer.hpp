@@ -5,6 +5,8 @@
 #include "Program.hpp"
 #include "math/Vec3.hpp"
 
+class Karaoke;
+
 #define NOISE_Y_OFFSET_NORMAL_SPEED 0.4f
 #define NOISE_Y_OFFSET_START_SPEED_UP_DURATION 1.0f
 
@@ -22,8 +24,7 @@ public:
 
     bool initialize();
 
-    void update(float first_syllabe_start_timing,
-            float running_time, float delta_time);
+    void update(const Karaoke& karaoke, float running_time, float delta_time);
     void render(float aspect_ratio, float first_syllabe_start_timing, float running_time) const;
 
 private:

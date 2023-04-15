@@ -22,6 +22,7 @@ public:
 
     const std::vector<Page>& pages() const;
     float first_syllabe_start_timing() const;
+    float get_speech_rate(float running_time) const;
 
 private:
     std::vector<Page> m_pages;
