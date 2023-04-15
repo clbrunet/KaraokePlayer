@@ -31,6 +31,7 @@ bool Karaoke::load(const char* xml_path, const Font& font)
         page.set_timings();
     }
     m_first_syllabe_start_timing = m_pages.front().start_timing();
+    m_last_syllabe_end_timing = m_pages.back().end_timing();
     add_empty_pages();
     return true;
 }
@@ -43,6 +44,11 @@ const std::vector<Page>& Karaoke::pages() const
 float Karaoke::first_syllabe_start_timing() const
 {
     return m_first_syllabe_start_timing;
+}
+
+float Karaoke::last_syllabe_end_timing() const
+{
+    return m_last_syllabe_end_timing;
 }
 
 float Karaoke::get_speech_rate(float running_time) const

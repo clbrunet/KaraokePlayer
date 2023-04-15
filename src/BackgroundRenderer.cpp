@@ -67,12 +67,12 @@ void BackgroundRenderer::initialize_OpenGL_objects()
 
 void BackgroundRenderer::update(const Karaoke& karaoke, float running_time, float delta_time)
 {
-    if (running_time
-        - (karaoke.first_syllabe_start_timing() - NOISE_Y_OFFSET_START_SPEED_UP_DURATION) < 0.0f)
-    {
-        return;
-    }
     float desired_speed = NOISE_Y_OFFSET_NORMAL_SPEED;
+    if (running_time < karaoke.first_syllabe_start_timing()
+        || karaoke.last_syllabe_end_timing() < running_time)
+    {
+        desired_speed = 0.0f;
+    }
     float speech_rate = karaoke.get_speech_rate(running_time);
     if (speech_rate > 0.0f)
     {
