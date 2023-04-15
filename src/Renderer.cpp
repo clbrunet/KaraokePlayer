@@ -22,6 +22,7 @@ bool Renderer::initialize()
 {
     initialize_OpenGL_objects();
     Vec4 already_sung_text_color(1.0f, 0.6f, 0.0f, 1.0f);
+    Vec4 old_already_sung_text_color(1.0f, 0.9f, 0.0f, 1.0f);
     if (!m_letter_program.initialize("shaders/karaoke.vert", "shaders/karaoke.frag"))
     {
         return false;
@@ -29,12 +30,15 @@ bool Renderer::initialize()
     m_letter_program.use();
     m_letter_program.set_uniform_int("sampler", 0);
     m_letter_program.set_uniform_vec4("already_sung_text_color", already_sung_text_color);
+    m_letter_program.set_uniform_vec4("old_already_sung_text_color", old_already_sung_text_color);
     if (!m_loading_bar_program.initialize("shaders/loading_bar.vert", "shaders/loading_bar.frag"))
     {
         return false;
     }
     m_loading_bar_program.use();
     m_loading_bar_program.set_uniform_vec4("already_sung_text_color", already_sung_text_color);
+    m_loading_bar_program.set_uniform_vec4("old_already_sung_text_color",
+            old_already_sung_text_color);
     return true;
 }
 
