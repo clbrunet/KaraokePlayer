@@ -28,10 +28,10 @@ public:
     float get_speech_rate() const;
 
 private:
-    float m_start_timing;
-    float m_end_timing;
+    float m_start_timing = 0.0f;
+    float m_end_timing = 0.0f;
     std::vector<Letter> m_letters;
-    Mat4 m_model;
+    Mat4 m_model = Mat4::identity();
 
     static uint64_t parse_ms_text(const std::string& text);
 };

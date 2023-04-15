@@ -7,8 +7,8 @@ uniform sampler2D sampler;
 uniform float running_time;
 uniform float letter_start_timing;
 uniform float letter_end_timing;
-uniform vec4 already_sung_text_color;
-uniform vec4 old_already_sung_text_color;
+uniform vec4 past_fragment_color;
+uniform vec4 old_past_fragment_color;
 
 out vec4 out_color;
 
@@ -23,7 +23,7 @@ void main()
     if (color == vec4(1.0) && fragment_timing < running_time)
     {
         float interpolation = (running_time - fragment_timing);
-        out_color = mix(already_sung_text_color, old_already_sung_text_color, interpolation);
+        out_color = mix(past_fragment_color, old_past_fragment_color, interpolation);
     }
     else
     {

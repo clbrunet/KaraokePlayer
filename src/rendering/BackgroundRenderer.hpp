@@ -1,16 +1,10 @@
 #pragma once
 
-#include <vector>
-
 #include "Program.hpp"
 #include "math/Vec3.hpp"
 
 class Karaoke;
-
-#define NOISE_Y_OFFSET_NORMAL_SPEED 0.4f
-#define NOISE_Y_OFFSET_ACCELERATION 1.0f
-
-#define BACKGROUND_INDICES_COUNT 6
+class Application;
 
 class BackgroundRenderer
 {
@@ -22,13 +16,16 @@ public:
     BackgroundRenderer &operator=(const BackgroundRenderer &) = delete;
     ~BackgroundRenderer();
 
-    bool initialize();
+    bool initialize(const Karaoke& karaoke, float audio_length);
 
-    void update(const Karaoke& karaoke, float running_time, float delta_time);
-    void render(float aspect_ratio, const Karaoke& karaoke,
-            float audio_length, float running_time) const;
+    void update(const Application& application, float delta_time);
+    void render(const Application& application) const;
 
 private:
+
+    static constexpr float NOISE_Y_OFFSET_NORMAL_SPEED = 0.4f;
+    static constexpr float NOISE_Y_OFFSET_MAX_ACCELERATION = 1.0f;
+    static constexpr int INDICES_COUNT = 6;
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
     unsigned int m_element_buffer = 0;
@@ -38,10 +35,10 @@ private:
 
     void initialize_OpenGL_objects();
 
-    struct BackgroundVertex
+    struct Vertex
     {
         Vec3 position;
 
-        BackgroundVertex(Vec3 position);
+        Vertex(Vec3 position);
     };
 };

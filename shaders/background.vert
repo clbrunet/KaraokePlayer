@@ -6,8 +6,8 @@ uniform float aspect_ratio;
 
 uniform float first_syllabe_start_timing;
 uniform float last_syllabe_end_timing;
-uniform float running_time;
 uniform float audio_length;
+uniform float running_time;
 uniform float noise_y_offset;
 
 out vec2 v_noise_coordinates;

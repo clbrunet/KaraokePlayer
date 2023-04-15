@@ -26,7 +26,7 @@ public:
 
 private:
     Font::CharTextureCoordinates m_char_texture_coordinates;
-    Mat4 m_model;
-    float m_start_timing;
-    float m_end_timing;
+    Mat4 m_model = Mat4::identity();
+    float m_start_timing = 0.0f;
+    float m_end_timing = 0.0f;
 };

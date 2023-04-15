@@ -1,12 +1,9 @@
 #include <iostream>
 
-#include "Renderer.hpp"
 #include "karaoke/Word.hpp"
+#include "rendering/PageRenderer.hpp"
 
-Word::Word(const pugi::xml_node& word_node, const Font& font) :
-    m_model(Mat4::identity()),
-    m_start_timing(0.0f),
-    m_end_timing(0.0f)
+Word::Word(const pugi::xml_node& word_node, const Font& font)
 {
     for (pugi::xml_node syllabe_node : word_node)
     {
@@ -19,13 +16,14 @@ void Word::set_models(float local_position)
     m_model = Mat4::identity().translate(Vec2(local_position, 0.0f));
 
     // spread syllabe positions around 0
-    float letters_width = (float)letters_count() * LETTER_BASE_WIDTH;
-    float syllabe_start_local_position = (letters_width - LETTER_BASE_WIDTH) * -0.5f;
+    float letters_width = (float)letters_count() * PageRenderer::LETTER_BASE_WIDTH;
+    float syllabe_start_local_position = (letters_width - PageRenderer::LETTER_BASE_WIDTH) * -0.5f;
     for (Syllabe& syllabe : m_syllabes)
     {
-        float syllabe_letters_width = (float)syllabe.letters_count() * LETTER_BASE_WIDTH;
+        float syllabe_letters_width
+            = (float)syllabe.letters_count() * PageRenderer::LETTER_BASE_WIDTH;
         float syllabe_local_position = syllabe_start_local_position
-            + 0.5f * (syllabe_letters_width - LETTER_BASE_WIDTH);
+            + 0.5f * (syllabe_letters_width - PageRenderer::LETTER_BASE_WIDTH);
         syllabe.set_models(syllabe_local_position);
         syllabe_start_local_position += syllabe_letters_width;
     }
