@@ -805,4 +805,76 @@
       </word>
     </line>
   </page>
+  <page id="12">
+    <line id="20">
+      <word id="1">
+        <syllabe>
+          <start>00:03:12,490</start>
+          <end>00:03:12,620</end>
+          <text>Ne</text>
+        </syllabe>
+        <syllabe>
+          <start>00:03:12,620</start>
+          <end>00:03:12,750</end>
+          <text>ver</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:03:12,750</start>
+          <end>00:03:12,880</end>
+          <text>go</text>
+        </syllabe>
+        <syllabe>
+          <start>00:03:12,880</start>
+          <end>00:03:13,010</end>
+          <text>nna</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:03:13,010</start>
+          <end>00:03:13,560</end>
+          <text>tell</text>
+        </syllabe>
+      </word>
+      <word id="4">
+        <syllabe>
+          <start>00:03:13,560</start>
+          <end>00:03:13,830</end>
+          <text>a</text>
+        </syllabe>
+      </word>
+      <word id="5">
+        <syllabe>
+          <start>00:03:13,830</start>
+          <end>00:03:14,620</end>
+          <text>lie</text>
+        </syllabe>
+      </word>
+    </line>
+    <line id="21">
+      <word id="1">
+        <syllabe>
+          <start>00:03:14,890</start>
+          <end>00:03:15,150</end>
+          <text>and</text>
+        </syllabe>
+      </word>
+      <word id="2">
+        <syllabe>
+          <start>00:03:15,150</start>
+          <end>00:03:15,680</end>
+          <text>hurt</text>
+        </syllabe>
+      </word>
+      <word id="3">
+        <syllabe>
+          <start>00:03:15,680</start>
+          <end>00:03:16,210</end>
+          <text>you</text>
+        </syllabe>
+      </word>
+    </line>
+  </page>
 </karaoke>
