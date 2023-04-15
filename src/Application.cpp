@@ -144,12 +144,7 @@ void Application::run()
         float delta_time = new_running_time - m_running_time;
         m_running_time = new_running_time;
         update(delta_time);
-        m_background_renderer.render(m_aspect_ratio, m_karaoke.first_syllabe_start_timing(),
-                m_running_time);
-        const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
-            ? &*m_pages_iterator : nullptr;
-        m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
-        SDL_GL_SwapWindow(m_window);
+        render();
     }
 }
 
@@ -206,6 +201,16 @@ void Application::update(float delta_time)
         m_pages_iterator++;
     }
     m_background_renderer.update(m_karaoke, m_running_time, delta_time);
+}
+
+void Application::render()
+{
+    m_background_renderer.render(m_aspect_ratio, m_karaoke.first_syllabe_start_timing(),
+            m_running_time);
+    const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
+        ? &*m_pages_iterator : nullptr;
+    m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
+    SDL_GL_SwapWindow(m_window);
 }
 
 void Application::set_projection_matrix()
