@@ -72,15 +72,18 @@ void Renderer::render(const Font& font, const Page* page, float running_time,
 
 void Renderer::initialize_OpenGL_objects()
 {
-    float m_letter_vertices[] =
+    LetterVertex m_letter_vertices[] =
     {
-        // position                                                         UVs
-        -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
-        -(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    0.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    1.0f, 0.0f,
+        LetterVertex(Vec3(-(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f),
+                Vec2(0.0f, 0.0f)),
+        LetterVertex(Vec3(-(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f), 0.0f),
+                Vec2(0.0f, 1.0f)),
+        LetterVertex(Vec3((LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f), 0.0f),
+                Vec2(1.0f, 1.0f)),
+        LetterVertex(Vec3((LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f),
+                Vec2(1.0f, 0.0f)),
     };
-    unsigned int m_letter_indices[] =
+    unsigned int m_letter_indices[LETTER_INDICES_COUNT] =
     {
         0, 1, 2,
         0, 2, 3,
@@ -93,16 +96,19 @@ void Renderer::initialize_OpenGL_objects()
     glBindVertexArray(m_vertex_array);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(m_letter_vertices), m_letter_vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(m_letter_vertices),
+            m_letter_vertices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_letter_indices), m_letter_indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_letter_indices),
+            m_letter_indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, sizeof(LetterVertex::position) / sizeof(float), GL_FLOAT, GL_FALSE,
+            sizeof(LetterVertex), (void*)offsetof(LetterVertex, position));
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float),
-            (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, sizeof(LetterVertex::uvs) / sizeof(float), GL_FLOAT, GL_FALSE,
+            sizeof(LetterVertex), (void*)offsetof(LetterVertex, uvs));
     glEnableVertexAttribArray(1);
 }
 
@@ -111,7 +117,7 @@ void Renderer::render_loading_bar(const Page& page) const
     m_loading_bar_program.set_uniform_mat4("scale", Mat4::identity().scale(200.0f, 5.0f, 1.0f));
     m_loading_bar_program.set_uniform_float("start_timing", page.start_timing());
     m_loading_bar_program.set_uniform_float("end_timing", page.end_timing());
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, LETTER_INDICES_COUNT, GL_UNSIGNED_INT, 0);
 }
 
 void Renderer::render_page(const Page& page, const Mat4& font_scale) const
@@ -155,5 +161,11 @@ void Renderer::render_letter(const Letter& letter, const Mat4& syllabe_model) co
     m_letter_program.set_uniform_mat4("model", syllabe_model * letter.model());
     m_letter_program.set_uniform_float("letter_start_timing", letter.start_timing());
     m_letter_program.set_uniform_float("letter_end_timing", letter.end_timing());
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, LETTER_INDICES_COUNT, GL_UNSIGNED_INT, 0);
+}
+
+Renderer::LetterVertex::LetterVertex(Vec3 position, Vec2 uvs) :
+    position(position),
+    uvs(uvs)
+{
 }

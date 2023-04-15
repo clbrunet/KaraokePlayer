@@ -4,6 +4,7 @@
 
 #include "graphics/Font.hpp"
 #include "Program.hpp"
+#include "math/Vec3.hpp"
 
 class Page;
 class Line;
@@ -15,6 +16,8 @@ class Letter;
 #define LETTER_BASE_HEIGHT 0.035f
 #define WORDS_SPACING_BASE_WIDTH (LETTER_BASE_WIDTH / 1.5f)
 #define LINES_SPACING_BASE_HEIGHT (LETTER_BASE_HEIGHT * 0.0f)
+
+#define LETTER_INDICES_COUNT 6
 
 class Renderer
 {
@@ -45,4 +48,12 @@ private:
     void render_word(const Word& word, const Mat4& line_model) const;
     void render_syllabe(const Syllabe& syllabe, const Mat4& word_model) const;
     void render_letter(const Letter& letter, const Mat4& syllabe_model) const;
+
+    struct LetterVertex
+    {
+        Vec3 position = Vec3::zero();
+        Vec2 uvs = Vec2::zero();
+
+        LetterVertex(Vec3 position, Vec2 uvs);
+    };
 };

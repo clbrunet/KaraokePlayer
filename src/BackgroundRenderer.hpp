@@ -3,9 +3,12 @@
 #include <vector>
 
 #include "Program.hpp"
+#include "math/Vec3.hpp"
 
 #define NOISE_Y_OFFSET_NORMAL_SPEED 0.4f
 #define NOISE_Y_OFFSET_START_SPEED_UP_DURATION 1.0f
+
+#define BACKGROUND_INDICES_COUNT 6
 
 class BackgroundRenderer
 {
@@ -32,4 +35,11 @@ private:
     float m_noise_y_offset = 0.0f;
 
     void initialize_OpenGL_objects();
+
+    struct BackgroundVertex
+    {
+        Vec3 position;
+
+        BackgroundVertex(Vec3 position);
+    };
 };

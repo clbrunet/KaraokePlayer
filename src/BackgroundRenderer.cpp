@@ -31,15 +31,14 @@ bool BackgroundRenderer::initialize()
 
 void BackgroundRenderer::initialize_OpenGL_objects()
 {
-    float m_background_vertices[] =
+    BackgroundVertex m_background_vertices[] =
     {
-        // position
-        -1.0f, -1.0f, 0.0f,
-        -1.0f, 1.0f,  0.0f,
-        1.0f,  1.0f,  0.0f,
-        1.0f,  -1.0f, 0.0f,
+        BackgroundVertex(Vec3(-1.0f, -1.0f, 0.0f)),
+        BackgroundVertex(Vec3(-1.0f, 1.0f, 0.0f)),
+        BackgroundVertex(Vec3(1.0f, 1.0f, 0.0f)),
+        BackgroundVertex(Vec3(1.0f, -1.0f, 0.0f)),
     };
-    unsigned int m_background_indices[] =
+    unsigned int m_background_indices[BACKGROUND_INDICES_COUNT] =
     {
         0, 1, 2,
         0, 2, 3,
@@ -59,7 +58,8 @@ void BackgroundRenderer::initialize_OpenGL_objects()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_background_indices),
             m_background_indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, sizeof(BackgroundVertex::position) / sizeof(float), GL_FLOAT, GL_FALSE,
+            sizeof(BackgroundVertex), (void*)offsetof(BackgroundVertex, position));
     glEnableVertexAttribArray(0);
 }
 
@@ -90,5 +90,10 @@ void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_ti
     m_program.set_uniform_float("first_syllabe_start_timing", first_syllabe_start_timing);
     m_program.set_uniform_float("running_time", running_time);
     m_program.set_uniform_float("noise_y_offset", m_noise_y_offset);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, BACKGROUND_INDICES_COUNT, GL_UNSIGNED_INT, 0);
+}
+
+BackgroundRenderer::BackgroundVertex::BackgroundVertex(Vec3 position) :
+    position(position)
+{
 }
