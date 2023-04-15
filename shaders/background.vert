@@ -2,11 +2,13 @@
 
 layout (location = 0) in vec4 position;
 
-out vec2 v_position;
+uniform float aspect_ratio;
+
+out vec2 v_noise_coordinates;
 
 void main()
 {
     gl_Position = position;
 
-    v_position = position.xy;
+    v_noise_coordinates = vec2(position.x * aspect_ratio, position.y);
 }

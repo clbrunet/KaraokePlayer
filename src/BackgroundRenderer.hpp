@@ -16,7 +16,7 @@ public:
 
     bool initialize();
     void initialize_OpenGL_objects();
-    void render(float first_syllabe_start_timing, float running_time) const;
+    void render(float aspect_ratio, float first_syllabe_start_timing, float running_time) const;
 
 private:
     unsigned int m_vertex_array = 0;

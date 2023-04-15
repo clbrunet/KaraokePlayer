@@ -1,6 +1,6 @@
 #version 400 core
 
-in vec2 v_position;
+in vec2 v_noise_coordinates;
 
 uniform float first_syllabe_start_timing;
 uniform float running_time;
@@ -19,7 +19,7 @@ void main()
 
     vec4 color1 = vec4(0.3, 0.3, 0.9, 1.0);
     vec4 color2 = vec4(0.1, 0.1, 0.7, 1.0);
-    float interpolation = snoise(v_position * noise_scale) * 0.5 + 0.5;
+    float interpolation = snoise(v_noise_coordinates * noise_scale) * 0.5 + 0.5;
     out_color = mix(color1, color2, interpolation);
 }
 

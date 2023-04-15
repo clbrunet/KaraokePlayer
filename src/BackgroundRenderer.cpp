@@ -63,11 +63,13 @@ void BackgroundRenderer::initialize_OpenGL_objects()
     glEnableVertexAttribArray(0);
 }
 
-void BackgroundRenderer::render(float first_syllabe_start_timing, float running_time) const
+void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_timing,
+        float running_time) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glBindVertexArray(m_vertex_array);
     m_program.use();
+    m_program.set_uniform_float("aspect_ratio", aspect_ratio);
     m_program.set_uniform_float("first_syllabe_start_timing", first_syllabe_start_timing);
     m_program.set_uniform_float("running_time", running_time);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

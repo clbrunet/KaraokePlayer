@@ -34,6 +34,7 @@ private:
     Renderer m_renderer;
     Font m_font;
     Mat4 m_font_scale = Mat4::identity();
+    float m_aspect_ratio = 0.0f;
     Mat4 m_projection = Mat4::identity();
     Karaoke m_karaoke;
     Audio m_audio;
@@ -51,5 +52,4 @@ private:
     void update();
 
     void set_projection_matrix();
-    void set_projection_matrix(int window_width, int window_height);
 };

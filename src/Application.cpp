@@ -16,6 +16,7 @@ Application::Application() :
     m_background_renderer(),
     m_font(),
     m_font_scale(Mat4::identity()),
+    m_aspect_ratio(0.0f),
     m_projection(Mat4::identity()),
     m_karaoke(),
     m_audio(),
@@ -44,6 +45,7 @@ Application::Application() :
         return;
     }
     m_font_scale = Mat4::identity().scale(8.0f);
+    m_aspect_ratio = (float)APPLICATION_BASE_WIDTH / (float)APPLICATION_BASE_HEIGHT;
     set_projection_matrix();
     if (!m_karaoke.load("assets/song.xml", m_font))
     {
@@ -140,7 +142,8 @@ void Application::run()
         }
         m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
-        m_background_renderer.render(m_karaoke.first_syllabe_start_timing(), m_running_time);
+        m_background_renderer.render(m_aspect_ratio, m_karaoke.first_syllabe_start_timing(),
+                m_running_time);
         const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
             ? &*m_pages_iterator : nullptr;
         m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
@@ -180,7 +183,8 @@ void Application::handle_events_window(SDL_Event event)
         int height = 0;
         SDL_GetWindowSize(m_window, &width, &height);
         glViewport(0, 0, width, height);
-        set_projection_matrix(width, height);
+        m_aspect_ratio = (float)width / (float)height;
+        set_projection_matrix();
     }
 }
 
@@ -203,15 +207,6 @@ void Application::update()
 
 void Application::set_projection_matrix()
 {
-    int width = 0;
-    int height = 0;
-    SDL_GetWindowSize(m_window, &width, &height);
-    set_projection_matrix(width, height);
-}
-
-void Application::set_projection_matrix(int window_width, int window_height)
-{
-    float aspect_ratio = ((float)window_width / (float)window_height);
     m_projection = Mat4::identity();
-    m_projection.array[0][0] = 1.0f / aspect_ratio;
+    m_projection.array[0][0] = 1.0f / m_aspect_ratio;
 }
