@@ -12,7 +12,8 @@ public:
     Audio &operator=(const Audio &) = delete;
     ~Audio();
 
-    bool load(const char* ogg_path, uint32_t audio_end_event);
+    // return the audio length in seconds or -1.0f on errors
+    float load(const char* ogg_path, uint32_t audio_end_event);
 
     struct CallbackData
     {

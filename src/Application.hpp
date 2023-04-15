@@ -38,6 +38,7 @@ private:
     Mat4 m_projection = Mat4::identity();
     Karaoke m_karaoke;
     Audio m_audio;
+    float m_audio_length = -1.0f;
     std::vector<Page>::const_iterator m_pages_iterator;
     bool m_is_running = false;
     float m_running_time = 0.0f;

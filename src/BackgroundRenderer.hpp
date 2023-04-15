@@ -25,7 +25,8 @@ public:
     bool initialize();
 
     void update(const Karaoke& karaoke, float running_time, float delta_time);
-    void render(float aspect_ratio, float first_syllabe_start_timing, float running_time) const;
+    void render(float aspect_ratio, const Karaoke& karaoke,
+            float audio_length, float running_time) const;
 
 private:
     unsigned int m_vertex_array = 0;

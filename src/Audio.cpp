@@ -28,14 +28,14 @@ static void audio_callback(void* userdata, uint8_t* stream, int len) {
     audio_callback_data->audio_length -= len;
 }
 
-bool Audio::load(const char* ogg_path, uint32_t audio_end_event)
+float Audio::load(const char* ogg_path, uint32_t audio_end_event)
 {
     int channels;
     int sample_rate;
     int length = stb_vorbis_decode_filename(ogg_path, &channels, &sample_rate, &m_ogg_output);
     if (length < 0)
     {
-        return false;
+        return -1.0f;
     }
     m_callback_data.audio_length = length * channels * (sizeof(int16_t) / sizeof(int8_t));
     m_callback_data.audio_position = (uint8_t*)m_ogg_output;
@@ -50,7 +50,7 @@ bool Audio::load(const char* ogg_path, uint32_t audio_end_event)
     spec.userdata = &m_callback_data;
     if (SDL_OpenAudio(&spec, nullptr) < 0) {
         std::cerr << "Coundl't open audio device." << std::endl;
-        return false;
+        return -1.0f;
     }
-    return true;
+    return (float)length / (float)sample_rate;
 }

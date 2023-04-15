@@ -83,14 +83,16 @@ void BackgroundRenderer::update(const Karaoke& karaoke, float running_time, floa
     m_noise_y_offset += m_noise_y_offset_speed * delta_time;
 }
 
-void BackgroundRenderer::render(float aspect_ratio, float first_syllabe_start_timing,
-        float running_time) const
+void BackgroundRenderer::render(float aspect_ratio, const Karaoke& karaoke,
+        float audio_length, float running_time) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glBindVertexArray(m_vertex_array);
     m_program.use();
     m_program.set_uniform_float("aspect_ratio", aspect_ratio);
-    m_program.set_uniform_float("first_syllabe_start_timing", first_syllabe_start_timing);
+    m_program.set_uniform_float("first_syllabe_start_timing", karaoke.first_syllabe_start_timing());
+    m_program.set_uniform_float("last_syllabe_end_timing", karaoke.last_syllabe_end_timing());
+    m_program.set_uniform_float("audio_length", audio_length);
     m_program.set_uniform_float("running_time", running_time);
     m_program.set_uniform_float("noise_y_offset", m_noise_y_offset);
     glDrawElements(GL_TRIANGLES, BACKGROUND_INDICES_COUNT, GL_UNSIGNED_INT, 0);

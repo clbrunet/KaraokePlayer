@@ -20,6 +20,7 @@ Application::Application() :
     m_projection(Mat4::identity()),
     m_karaoke(),
     m_audio(),
+    m_audio_length(-1.0f),
     m_pages_iterator(),
     m_is_running(false),
     m_running_time(0.0f)
@@ -51,7 +52,8 @@ Application::Application() :
     {
         return;
     }
-    if (!m_audio.load("assets/song.ogg", m_audio_end_event))
+    m_audio_length = m_audio.load("assets/song.ogg", m_audio_end_event);
+    if (m_audio_length < 0.0f)
     {
         return;
     }
@@ -205,8 +207,7 @@ void Application::update(float delta_time)
 
 void Application::render()
 {
-    m_background_renderer.render(m_aspect_ratio, m_karaoke.first_syllabe_start_timing(),
-            m_running_time);
+    m_background_renderer.render(m_aspect_ratio, m_karaoke, m_audio_length, m_running_time);
     const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
         ? &*m_pages_iterator : nullptr;
     m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);
