@@ -21,7 +21,7 @@ Application::Application() :
     m_karaoke(),
     m_audio(),
     m_pages_iterator(),
-    m_running(false),
+    m_is_running(false),
     m_running_time(0.0f)
 {
     if (!initialize_SDL())
@@ -129,14 +129,14 @@ void Application::run()
 {
     assert(is_initialized() && "Check Application::is_initialized before calling Application::run");
 
-    m_running = true;
+    m_is_running = true;
     SDL_PauseAudio(0);
     float start_running_time = (float)SDL_GetTicks64() / 1000.0f;
     m_running_time = 0.0f;
-    while (m_running)
+    while (m_is_running)
     {
         handle_events();
-        if (!m_running)
+        if (!m_is_running)
         {
             break;
         }
@@ -162,12 +162,12 @@ void Application::handle_events()
                 handle_events_window(event);
                 break;
             case SDL_QUIT:
-                m_running = false;
+                m_is_running = false;
                 break;
         }
         if (event.type == m_audio_end_event)
         {
-            m_running = false;
+            m_is_running = false;
         }
     }
 }
@@ -189,7 +189,7 @@ void Application::handle_events_keydown(SDL_Event event)
 {
     if (event.key.keysym.sym == SDLK_ESCAPE)
     {
-        m_running = false;
+        m_is_running = false;
     }
 }
 

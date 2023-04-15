@@ -39,7 +39,7 @@ private:
     Karaoke m_karaoke;
     Audio m_audio;
     std::vector<Page>::const_iterator m_pages_iterator;
-    bool m_running = false;
+    bool m_is_running = false;
     float m_running_time = 0.0f;
     uint32_t m_audio_end_event = -1;
 
