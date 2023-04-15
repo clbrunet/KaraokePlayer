@@ -20,7 +20,6 @@ Renderer::~Renderer()
 
 bool Renderer::initialize()
 {
-    glClearColor(0.3f, 0.1f, 0.7f, 1.0f);
     initialize_OpenGL_objects();
     Vec4 already_sung_text_color(1.0f, 0.6f, 0.0f, 1.0f);
     if (!m_letter_program.initialize("shaders/karaoke.vert", "shaders/karaoke.frag"))
@@ -39,46 +38,9 @@ bool Renderer::initialize()
     return true;
 }
 
-void Renderer::initialize_OpenGL_objects()
-{
-    float m_letter_vertices[20] =
-    {
-        // position                                                         UVs
-        -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
-        -(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    0.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
-        (LETTER_BASE_WIDTH / 2.0f),  -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    1.0f, 0.0f,
-    };
-    unsigned int m_letter_indices[6] =
-    {
-        0, 1, 2,
-        0, 2, 3,
-    };
-
-    glGenVertexArrays(1, &m_vertex_array);
-    glGenBuffers(1, &m_vertex_buffer);
-    glGenBuffers(1, &m_element_buffer);
-
-    glBindVertexArray(m_vertex_array);
-
-    glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(m_letter_vertices), m_letter_vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_letter_indices), m_letter_indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float),
-            (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-}
-
 void Renderer::render(const Font& font, const Page* page, float running_time,
         const Mat4& projection, const Mat4& font_scale) const
 {
-    glClear(GL_COLOR_BUFFER_BIT);
     if (page == nullptr)
     {
         return;
@@ -106,6 +68,42 @@ void Renderer::render(const Font& font, const Page* page, float running_time,
     {
         render_page(*page, font_scale);
     }
+}
+
+void Renderer::initialize_OpenGL_objects()
+{
+    float m_letter_vertices[] =
+    {
+        // position                                                         UVs
+        -(LETTER_BASE_WIDTH / 2.0f), -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    0.0f, 0.0f,
+        -(LETTER_BASE_WIDTH / 2.0f), (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    0.0f, 1.0f,
+        (LETTER_BASE_WIDTH / 2.0f),  (LETTER_BASE_HEIGHT / 2.0f),  0.0f,    1.0f, 1.0f,
+        (LETTER_BASE_WIDTH / 2.0f),  -(LETTER_BASE_HEIGHT / 2.0f), 0.0f,    1.0f, 0.0f,
+    };
+    unsigned int m_letter_indices[] =
+    {
+        0, 1, 2,
+        0, 2, 3,
+    };
+
+    glGenVertexArrays(1, &m_vertex_array);
+    glGenBuffers(1, &m_vertex_buffer);
+    glGenBuffers(1, &m_element_buffer);
+
+    glBindVertexArray(m_vertex_array);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(m_letter_vertices), m_letter_vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_letter_indices), m_letter_indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, (3 + 2) * sizeof(float),
+            (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 }
 
 void Renderer::render_loading_bar(const Page& page) const

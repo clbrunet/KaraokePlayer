@@ -5,6 +5,7 @@
 #include <SDL.h>
 
 #include "Renderer.hpp"
+#include "BackgroundRenderer.hpp"
 #include "karaoke/Letter.hpp"
 #include "karaoke/Karaoke.hpp"
 #include "Audio.hpp"
@@ -29,6 +30,7 @@ private:
     bool m_is_initialized = false;
     SDL_Window* m_window = nullptr;
     SDL_GLContext m_context = nullptr;
+    BackgroundRenderer m_background_renderer;
     Renderer m_renderer;
     Font m_font;
     Mat4 m_font_scale = Mat4::identity();

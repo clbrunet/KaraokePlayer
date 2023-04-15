@@ -13,6 +13,7 @@ Application::Application() :
     m_window(nullptr),
     m_context(nullptr),
     m_renderer(),
+    m_background_renderer(),
     m_font(),
     m_font_scale(Mat4::identity()),
     m_projection(Mat4::identity()),
@@ -27,6 +28,10 @@ Application::Application() :
         return;
     }
     if (!initialize_OpenGL())
+    {
+        return;
+    }
+    if (!m_background_renderer.initialize())
     {
         return;
     }
@@ -135,6 +140,7 @@ void Application::run()
         }
         m_running_time = (float)SDL_GetTicks64() / 1000.0f - start_running_time;
         update();
+        m_background_renderer.render(m_running_time);
         const Page* page = (m_pages_iterator != m_karaoke.pages().cend())
             ? &*m_pages_iterator : nullptr;
         m_renderer.render(m_font, page, m_running_time, m_projection, m_font_scale);

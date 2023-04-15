@@ -27,9 +27,8 @@ public:
     ~Renderer();
 
     bool initialize();
-    void initialize_OpenGL_objects();
     void render(const Font& font, const Page* page, float running_time,
-            const Mat4& projection , const Mat4& font_scale) const;
+            const Mat4& projection, const Mat4& font_scale) const;
 
 private:
     unsigned int m_vertex_array = 0;
@@ -37,6 +36,8 @@ private:
     unsigned int m_element_buffer = 0;
     Program m_letter_program;
     Program m_loading_bar_program;
+
+    void initialize_OpenGL_objects();
 
     void render_loading_bar(const Page& page) const;
     void render_page(const Page& page, const Mat4& font_scale) const;
