@@ -11,6 +11,10 @@ bool Renderer::initialize(const Karaoke& karaoke, float audio_length)
     {
         return false;
     }
+    if (!m_progress_bar_renderer.initialize(audio_length))
+    {
+        return false;
+    }
     if (!m_pause_loading_bar_renderer.initialize())
     {
         return false;
@@ -31,6 +35,7 @@ void Renderer::render(const Application& application) const
 {
     glClear(GL_COLOR_BUFFER_BIT);
     m_background_renderer.render(application);
+    m_progress_bar_renderer.render(application);
     m_pause_loading_bar_renderer.render(application);
     m_page_renderer.render(application);
 }

@@ -7,23 +7,22 @@
 class Application;
 class Page;
 
-class PauseLoadingBarRenderer
+class ProgressBarRenderer
 {
 public:
-    PauseLoadingBarRenderer() = default;
-    PauseLoadingBarRenderer(PauseLoadingBarRenderer &&) = delete;
-    PauseLoadingBarRenderer(const PauseLoadingBarRenderer &) = delete;
-    PauseLoadingBarRenderer &operator=(PauseLoadingBarRenderer &&) = delete;
-    PauseLoadingBarRenderer &operator=(const PauseLoadingBarRenderer &) = delete;
-    ~PauseLoadingBarRenderer();
+    ProgressBarRenderer() = default;
+    ProgressBarRenderer(ProgressBarRenderer &&) = delete;
+    ProgressBarRenderer(const ProgressBarRenderer &) = delete;
+    ProgressBarRenderer &operator=(ProgressBarRenderer &&) = delete;
+    ProgressBarRenderer &operator=(const ProgressBarRenderer &) = delete;
+    ~ProgressBarRenderer();
 
-    bool initialize();
+    bool initialize(float audio_length);
 
     void render(const Application& application) const;
 
 private:
-    static constexpr float LOADING_BAR_WIDTH_2 = 0.8f;
-    static constexpr float LOADING_BAR_HEIGHT_2 = 0.06f;
+    static constexpr float PROGRESS_BAR_HEIGHT = 0.05f;
     static constexpr int INDICES_COUNT = 6;
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;
