@@ -34,6 +34,19 @@ Application::Application()
     {
         return;
     }
+    m_scale_plus_minus_buttons[0] = PlusMinusButton(true,
+            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_scale_plus_minus_buttons[1] = PlusMinusButton(false,
+            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
     if (!m_renderer.initialize(m_karaoke, m_audio_length))
     {
         return;
@@ -105,6 +118,11 @@ const Page* Application::current_page() const
         return nullptr;
     }
     return &*m_pages_iterator;
+}
+
+const std::array<PlusMinusButton, 2>& Application::scale_plus_minus_buttons() const
+{
+    return m_scale_plus_minus_buttons;
 }
 
 float Application::running_time() const

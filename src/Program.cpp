@@ -88,6 +88,11 @@ void Program::use() const
     glUseProgram(m_program);
 }
 
+void Program::set_uniform_bool(const char* location, bool b) const
+{
+    glUniform1i(glGetUniformLocation(m_program, location), b);
+}
+
 void Program::set_uniform_int(const char* location, int i) const
 {
     glUniform1i(glGetUniformLocation(m_program, location), i);

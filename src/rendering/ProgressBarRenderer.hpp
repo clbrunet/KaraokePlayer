@@ -21,8 +21,10 @@ public:
 
     void render(const Application& application) const;
 
-private:
     static constexpr float PROGRESS_BAR_HEIGHT = 0.05f;
+    static constexpr float PROGRESS_BAR_HEIGHT_2 = PROGRESS_BAR_HEIGHT / 2.0f;
+
+private:
     static constexpr int INDICES_COUNT = 6;
     unsigned int m_vertex_array = 0;
     unsigned int m_vertex_buffer = 0;

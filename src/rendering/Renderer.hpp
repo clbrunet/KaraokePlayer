@@ -2,6 +2,7 @@
 
 #include "rendering/BackgroundRenderer.hpp"
 #include "rendering/ProgressBarRenderer.hpp"
+#include "rendering/PlusMinusButtonsRenderer.hpp"
 #include "rendering/PageRenderer.hpp"
 #include "rendering/PauseLoadingBarRenderer.hpp"
 
@@ -26,6 +27,7 @@ public:
 private:
     BackgroundRenderer m_background_renderer;
     ProgressBarRenderer m_progress_bar_renderer;
+    PlusMinusButtonsRenderer m_plus_minus_buttons_renderer;
     PauseLoadingBarRenderer m_pause_loading_bar_renderer;
     PageRenderer m_page_renderer;
 };

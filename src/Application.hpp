@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <array>
 
 #include <SDL.h>
 
@@ -8,6 +9,7 @@
 #include "karaoke/Letter.hpp"
 #include "karaoke/Karaoke.hpp"
 #include "Audio.hpp"
+#include "graphics/PlusMinusButton.hpp"
 
 class Application
 {
@@ -27,6 +29,7 @@ public:
     const Font& font() const;
     const Karaoke& karaoke() const;
     const Page* current_page() const;
+    const std::array<PlusMinusButton, 2>& scale_plus_minus_buttons() const;
     float running_time() const;
 
 private:
@@ -46,6 +49,8 @@ private:
     uint32_t m_audio_end_event = -1;
     Audio m_audio;
     float m_audio_length = -1.0f;
+
+    std::array<PlusMinusButton, 2> m_scale_plus_minus_buttons;
 
     Renderer m_renderer;
 
