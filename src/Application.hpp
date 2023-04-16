@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include <array>
 
 #include <SDL.h>
@@ -31,7 +30,15 @@ public:
     const Karaoke& karaoke() const;
     const Page* current_page() const;
     const Mat4& scale() const;
-    const std::array<PlusMinusButton, 2>& scale_plus_minus_buttons() const;
+    enum PlusMinusButtons
+    {
+        ScaleMinus,
+        ScalePlus,
+        VolumeMinus,
+        VolumePlus,
+        PlusMinusButtonsCount,
+    };
+    const std::array<PlusMinusButton, PlusMinusButtonsCount>& plus_minus_buttons() const;
     const std::vector<Text>& texts() const;
     float running_time() const;
 
@@ -54,7 +61,7 @@ private:
     float m_audio_length = -1.0f;
 
     Mat4 m_scale = Mat4::identity();
-    std::array<PlusMinusButton, 2> m_scale_plus_minus_buttons;
+    std::array<PlusMinusButton, PlusMinusButtonsCount> m_plus_minus_buttons;
 
     std::vector<Text> m_texts;
 
@@ -66,6 +73,8 @@ private:
 
     bool initialize_SDL();
     bool initialize_OpenGL();
+    void initialize_scale_UI();
+    void initialize_volume_UI();
 
     void handle_events();
     void handle_events_window(SDL_Event event);

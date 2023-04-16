@@ -34,25 +34,8 @@ Application::Application()
     {
         return;
     }
-    m_scale_plus_minus_buttons[0] = PlusMinusButton(true,
-            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
-                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
-                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
-                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
-                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
-    m_scale_plus_minus_buttons[1] = PlusMinusButton(false,
-            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
-                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH
-                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
-                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
-                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
-                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
-    m_texts.push_back(Text(m_font, "Karaoke scale",
-                Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2,
-                    -1.0f + 2.0f * ProgressBarRenderer::PROGRESS_BAR_HEIGHT
-                    + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT
-                    + TextsRenderer::CHARACTER_BASE_HEIGHT_2),
-                Text::Alignment::Left));
+    initialize_scale_UI();
+    initialize_volume_UI();
     if (!m_renderer.initialize(m_karaoke, m_audio_length))
     {
         return;
@@ -131,9 +114,10 @@ const Mat4& Application::scale() const
     return m_scale;
 }
 
-const std::array<PlusMinusButton, 2>& Application::scale_plus_minus_buttons() const
+const std::array<PlusMinusButton, Application::PlusMinusButtonsCount>&
+Application::plus_minus_buttons() const
 {
-    return m_scale_plus_minus_buttons;
+    return m_plus_minus_buttons;
 }
 
 const std::vector<Text>& Application::texts() const
@@ -198,6 +182,52 @@ bool Application::initialize_OpenGL()
     return true;
 }
 
+void Application::initialize_scale_UI()
+{
+    m_plus_minus_buttons[ScaleMinus] = PlusMinusButton(true,
+            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_plus_minus_buttons[ScalePlus] = PlusMinusButton(false,
+            Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_texts.push_back(Text(m_font, "Karaoke scale",
+                Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2,
+                    -1.0f + 2.0f * ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                    + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT
+                    + TextsRenderer::CHARACTER_BASE_HEIGHT_2),
+                Text::Alignment::Left));
+}
+
+void Application::initialize_volume_UI()
+{
+    m_plus_minus_buttons[VolumeMinus] = PlusMinusButton(true,
+            Vec2(1.0f - ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                - PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH
+                - PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_plus_minus_buttons[VolumePlus] = PlusMinusButton(false,
+            Vec2(1.0f - ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                - PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_WIDTH_2,
+                -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
+                + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_texts.push_back(Text(m_font, "Volume",
+                Vec2(1.0f - ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2,
+                    -1.0f + 2.0f * ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                    + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT
+                    + TextsRenderer::CHARACTER_BASE_HEIGHT_2),
+                Text::Alignment::Right));
+}
+
 void Application::handle_events()
 {
     SDL_Event event;
@@ -255,13 +285,21 @@ void Application::handle_events_mousebuttondown(SDL_Event event)
     int y;
     SDL_GetMouseState(&x, &y);
     Vec2 mouse_click_ratio((float)x / (float)width, (float)(height - y) / (float)height);
-    if (m_scale_plus_minus_buttons[0].is_clicked(mouse_click_ratio))
+    if (m_plus_minus_buttons[ScaleMinus].is_clicked(mouse_click_ratio))
     {
         m_scale.set_scale((m_scale.get_scale() - 0.2f).clamp(0.2f, 2.0f));
     }
-    else if (m_scale_plus_minus_buttons[1].is_clicked(mouse_click_ratio))
+    else if (m_plus_minus_buttons[ScalePlus].is_clicked(mouse_click_ratio))
     {
         m_scale.set_scale((m_scale.get_scale() + 0.2f).clamp(0.2f, 2.0f));
+    }
+    else if (m_plus_minus_buttons[VolumeMinus].is_clicked(mouse_click_ratio))
+    {
+        m_audio.turn_down_volume();
+    }
+    else if (m_plus_minus_buttons[VolumePlus].is_clicked(mouse_click_ratio))
+    {
+        m_audio.turn_up_volume();
     }
 }
 
@@ -273,7 +311,7 @@ void Application::update(float delta_time)
         m_pages_iterator++;
     }
     m_renderer.update(*this, delta_time);
-    for (PlusMinusButton& plus_minus_button : m_scale_plus_minus_buttons)
+    for (PlusMinusButton& plus_minus_button : m_plus_minus_buttons)
     {
         plus_minus_button.update(delta_time);
     }

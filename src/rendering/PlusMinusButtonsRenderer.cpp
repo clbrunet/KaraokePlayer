@@ -31,7 +31,7 @@ void PlusMinusButtonsRenderer::render(const Application& application) const
     glBindVertexArray(m_vertex_array);
     m_program.use();
     m_program.set_uniform_float("aspect_ratio", application.aspect_ratio());
-    for (const PlusMinusButton& plus_minus_button : application.scale_plus_minus_buttons())
+    for (const PlusMinusButton& plus_minus_button : application.plus_minus_buttons())
     {
         m_program.set_uniform_mat4("model", plus_minus_button.model());
         m_program.set_uniform_bool("is_minus", plus_minus_button.is_minus());
