@@ -21,6 +21,8 @@ bool PlusMinusButtonsRenderer::initialize()
     {
         return false;
     }
+    m_program.use();
+    m_program.set_uniform_float("clicked_timer_duration", PlusMinusButton::CLICKED_TIMER_DURATION);
     return true;
 }
 
@@ -33,6 +35,7 @@ void PlusMinusButtonsRenderer::render(const Application& application) const
     {
         m_program.set_uniform_mat4("model", plus_minus_button.model());
         m_program.set_uniform_bool("is_minus", plus_minus_button.is_minus());
+        m_program.set_uniform_float("clicked_timer", plus_minus_button.clicked_timer());
         glDrawElements(GL_TRIANGLES, INDICES_COUNT, GL_UNSIGNED_INT, 0);
     }
 }

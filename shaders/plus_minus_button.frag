@@ -3,6 +3,8 @@
 in vec2 v_uvs;
 
 uniform bool is_minus;
+uniform float clicked_timer;
+uniform float clicked_timer_duration;
 
 out vec4 out_color;
 
@@ -23,5 +25,8 @@ void main()
         out_color = vec4(vec3(0.0), 1.0);
         return;
     }
-    out_color = vec4(vec3(1.0), 1.0);
+    vec4 clicked_color = vec4(vec3(0.4), 1.0);
+    vec4 base_color = vec4(vec3(1.0), 1.0);
+    float interpolation = clicked_timer / clicked_timer_duration;
+    out_color = mix(base_color, clicked_color, interpolation);
 }

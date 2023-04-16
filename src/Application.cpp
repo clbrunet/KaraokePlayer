@@ -262,6 +262,10 @@ void Application::update(float delta_time)
         m_pages_iterator++;
     }
     m_renderer.update(*this, delta_time);
+    for (PlusMinusButton& plus_minus_button : m_scale_plus_minus_buttons)
+    {
+        plus_minus_button.update(delta_time);
+    }
 }
 
 void Application::set_projection_matrix()
