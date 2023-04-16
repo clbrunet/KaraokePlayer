@@ -23,7 +23,7 @@ static void audio_callback(void* userdata, uint8_t* stream, int len) {
         return;
     }
     len = std::min(len, audio_callback_data->audio_length);
-    SDL_MixAudio(stream, audio_callback_data->audio_position, len, SDL_MIX_MAXVOLUME);
+    SDL_MixAudio(stream, audio_callback_data->audio_position, len, audio_callback_data->volume);
     audio_callback_data->audio_position += len;
     audio_callback_data->audio_length -= len;
 }
@@ -53,4 +53,22 @@ float Audio::load(const char* ogg_path, uint32_t audio_end_event)
         return -1.0f;
     }
     return (float)length / (float)sample_rate;
+}
+
+void Audio::turn_down_volume()
+{
+    m_callback_data.volume -= 8;
+    if (m_callback_data.volume < 0)
+    {
+        m_callback_data.volume = 0;
+    }
+}
+
+void Audio::turn_up_volume()
+{
+    m_callback_data.volume += 8;
+    if (SDL_MIX_MAXVOLUME < m_callback_data.volume)
+    {
+        m_callback_data.volume = SDL_MIX_MAXVOLUME;
+    }
 }
