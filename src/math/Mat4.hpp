@@ -13,6 +13,7 @@ struct Mat4
             float m20, float m21, float m22, float m23,
             float m30, float m31, float m32, float m33
         );
+    Mat4(const Mat4& src);
     Mat4& operator=(Mat4 const& rhs);
 
     static Mat4 identity();

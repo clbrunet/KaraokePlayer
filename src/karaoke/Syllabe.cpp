@@ -85,7 +85,7 @@ uint64_t Syllabe::parse_ms_text(const std::string& text)
     uint64_t seconds = -1;
     uint64_t ms = -1;
     isstream >> hours >> separator >> minutes >> separator >> seconds >> separator >> ms;
-    while (ms == -1)
+    while (ms == (uint64_t)-1)
     {
         ms = seconds;
         seconds = minutes;

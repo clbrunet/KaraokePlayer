@@ -145,7 +145,7 @@ bool Application::initialize_SDL()
     SDL_GL_SetSwapInterval(1);
 
     m_audio_end_event = SDL_RegisterEvents(1);
-    if (m_audio_end_event == -1)
+    if (m_audio_end_event == (uint32_t)-1)
     {
         std::cerr << "Coundl't register events." << std::endl;
         return false;

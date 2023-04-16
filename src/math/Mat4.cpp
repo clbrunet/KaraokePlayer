@@ -36,6 +36,11 @@ Mat4::Mat4(
     array[3][3] = m33;
 }
 
+Mat4::Mat4(const Mat4& src)
+{
+	*this = src;
+}
+
 Mat4& Mat4::operator=(Mat4 const& rhs)
 {
     std::memcpy(array, rhs.array, sizeof(float[4][4]));
