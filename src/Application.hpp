@@ -29,6 +29,7 @@ public:
     const Font& font() const;
     const Karaoke& karaoke() const;
     const Page* current_page() const;
+    const Mat4& scale() const;
     const std::array<PlusMinusButton, 2>& scale_plus_minus_buttons() const;
     float running_time() const;
 
@@ -50,6 +51,7 @@ private:
     Audio m_audio;
     float m_audio_length = -1.0f;
 
+    Mat4 m_scale = Mat4::identity();
     std::array<PlusMinusButton, 2> m_scale_plus_minus_buttons;
 
     Renderer m_renderer;

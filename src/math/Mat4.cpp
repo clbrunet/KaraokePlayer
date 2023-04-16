@@ -2,6 +2,7 @@
 
 #include "math/Mat4.hpp"
 #include "math/Vec2.hpp"
+#include "math/Vec3.hpp"
 
 Mat4::Mat4()
 {
@@ -57,6 +58,18 @@ Mat4 Mat4::identity()
             );
 }
 
+Vec3 Mat4::get_scale()
+{
+    return Vec3(array[0][0], array[1][1], array[2][2]);
+}
+
+void Mat4::set_scale(Vec3 scale)
+{
+    array[0][0] = scale.x;
+    array[1][1] = scale.y;
+    array[2][2] = scale.z;
+}
+
 Mat4& Mat4::scale(float factor)
 {
     array[0][0] *= factor;
@@ -65,11 +78,11 @@ Mat4& Mat4::scale(float factor)
     return *this;
 }
 
-Mat4& Mat4::scale(float x, float y, float z)
+Mat4& Mat4::scale(Vec3 scale)
 {
-    array[0][0] *= x;
-    array[1][1] *= y;
-    array[2][2] *= z;
+    array[0][0] *= scale.x;
+    array[1][1] *= scale.y;
+    array[2][2] *= scale.z;
     return *this;
 }
 

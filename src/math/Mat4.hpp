@@ -1,6 +1,7 @@
 #pragma once
 
 struct Vec2;
+struct Vec3;
 
 struct Mat4
 {
@@ -18,8 +19,11 @@ struct Mat4
 
     static Mat4 identity();
 
+    Vec3 get_scale();
+    void set_scale(Vec3 scale);
+
     Mat4& scale(float factor);
-    Mat4& scale(float x, float y, float z);
+    Mat4& scale(Vec3 scale);
     Mat4& translate(Vec2 vec2);
 
     Mat4 operator*(Mat4 const& rhs) const;

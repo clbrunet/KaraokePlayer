@@ -18,5 +18,10 @@ struct Vec3
 
     Vec3(float x, float y, float z);
 
+    const Vec3& clamp(float min, float max);
+
     static Vec3 zero();
+
+    Vec3 operator+(float rhs) const;
+    Vec3 operator-(float rhs) const;
 };

@@ -35,6 +35,7 @@ void PauseLoadingBarRenderer::render(const Application& application) const
     }
     glBindVertexArray(m_vertex_array);
     m_program.use();
+    m_program.set_uniform_mat4("model", application.scale());
     m_program.set_uniform_mat4("projection", application.projection());
     m_program.set_uniform_float("start_timing", page->start_timing());
     m_program.set_uniform_float("end_timing", page->end_timing());

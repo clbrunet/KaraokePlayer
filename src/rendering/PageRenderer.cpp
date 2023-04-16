@@ -30,7 +30,6 @@ bool PageRenderer::initialize()
     m_letter_program.set_uniform_int("sampler", 0);
     m_letter_program.set_uniform_vec4("past_fragment_color", Vec4(1.0f, 0.6f, 0.0f, 1.0f));
     m_letter_program.set_uniform_vec4("old_past_fragment_color", Vec4(1.0f, 0.9f, 0.0f, 1.0f));
-    m_font_scale = Mat4::identity().scale(8.0f);
     return true;
 }
 
@@ -47,7 +46,7 @@ void PageRenderer::render(const Application& application) const
     glBindTexture(GL_TEXTURE_2D, application.font().image().texture());
     m_letter_program.set_uniform_float("running_time", application.running_time());
     m_letter_program.set_uniform_mat4("projection", application.projection());
-    render_page(*page);
+    render_page(*page, application.scale());
 }
 
 void PageRenderer::initialize_OpenGL_objects()
@@ -86,11 +85,11 @@ void PageRenderer::initialize_OpenGL_objects()
     glEnableVertexAttribArray(1);
 }
 
-void PageRenderer::render_page(const Page& page) const
+void PageRenderer::render_page(const Page& page, const Mat4& scale) const
 {
     for (const Line& line : page.lines())
     {
-        render_line(line, page.model() * m_font_scale);
+        render_line(line, page.model() * scale);
     }
 }
 

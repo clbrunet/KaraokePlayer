@@ -120,6 +120,11 @@ const Page* Application::current_page() const
     return &*m_pages_iterator;
 }
 
+const Mat4& Application::scale() const
+{
+    return m_scale;
+}
+
 const std::array<PlusMinusButton, 2>& Application::scale_plus_minus_buttons() const
 {
     return m_scale_plus_minus_buttons;
@@ -241,9 +246,11 @@ void Application::handle_events_mousebuttondown(SDL_Event event)
     Vec2 mouse_click_ratio((float)x / (float)width, (float)(height - y) / (float)height);
     if (m_scale_plus_minus_buttons[0].is_clicked(mouse_click_ratio))
     {
+        m_scale.set_scale((m_scale.get_scale() - 0.2f).clamp(0.2f, 2.0f));
     }
     else if (m_scale_plus_minus_buttons[1].is_clicked(mouse_click_ratio))
     {
+        m_scale.set_scale((m_scale.get_scale() + 0.2f).clamp(0.2f, 2.0f));
     }
 }
 

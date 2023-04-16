@@ -26,9 +26,9 @@ public:
 
     void render(const Application& application) const;
 
-    static constexpr float LETTER_BASE_WIDTH = 0.01f;
+    static constexpr float LETTER_BASE_WIDTH = 0.08f;
+    static constexpr float LETTER_BASE_HEIGHT = 0.28f;
     static constexpr float LETTER_BASE_WIDTH_2 = LETTER_BASE_WIDTH / 2.0f;
-    static constexpr float LETTER_BASE_HEIGHT = 0.035f;
     static constexpr float LETTER_BASE_HEIGHT_2 = LETTER_BASE_HEIGHT / 2.0f;
     static constexpr float WORDS_SPACING_BASE_WIDTH = LETTER_BASE_WIDTH / 1.5f;
     static constexpr float LINES_SPACING_BASE_HEIGHT = LETTER_BASE_HEIGHT * 0.0f;
@@ -39,11 +39,10 @@ private:
     unsigned int m_vertex_buffer = 0;
     unsigned int m_element_buffer = 0;
     Program m_letter_program;
-    Mat4 m_font_scale = Mat4::identity();
 
     void initialize_OpenGL_objects();
 
-    void render_page(const Page& page) const;
+    void render_page(const Page& page, const Mat4& scale) const;
     void render_line(const Line& line, const Mat4& parent_model) const;
     void render_word(const Word& word, const Mat4& parent_model) const;
     void render_syllabe(const Syllabe& syllabe, const Mat4& parent_model) const;
