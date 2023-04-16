@@ -189,11 +189,14 @@ void Application::handle_events()
     {
         switch (event.type)
         {
+            case SDL_WINDOWEVENT:
+                handle_events_window(event);
+                break;
             case SDL_KEYDOWN:
                 handle_events_keydown(event);
                 break;
-            case SDL_WINDOWEVENT:
-                handle_events_window(event);
+            case SDL_MOUSEBUTTONDOWN:
+                handle_events_mousebuttondown(event);
                 break;
             case SDL_QUIT:
                 m_is_running = false;
@@ -224,6 +227,23 @@ void Application::handle_events_keydown(SDL_Event event)
     if (event.key.keysym.sym == SDLK_ESCAPE)
     {
         m_is_running = false;
+    }
+}
+
+void Application::handle_events_mousebuttondown(SDL_Event event)
+{
+    int width = 0;
+    int height = 0;
+    SDL_GetWindowSize(m_window, &width, &height);
+    int x;
+    int y;
+    SDL_GetMouseState(&x, &y);
+    Vec2 mouse_click_ratio((float)x / (float)width, (float)(height - y) / (float)height);
+    if (m_scale_plus_minus_buttons[0].is_clicked(mouse_click_ratio))
+    {
+    }
+    else if (m_scale_plus_minus_buttons[1].is_clicked(mouse_click_ratio))
+    {
     }
 }
 

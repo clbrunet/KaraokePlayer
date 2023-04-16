@@ -64,6 +64,7 @@ private:
     void handle_events();
     void handle_events_window(SDL_Event event);
     void handle_events_keydown(SDL_Event event);
+    void handle_events_mousebuttondown(SDL_Event event);
     void update(float delta_time);
 
     void set_projection_matrix();
