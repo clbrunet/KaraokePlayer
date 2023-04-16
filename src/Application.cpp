@@ -47,6 +47,12 @@ Application::Application()
                 -1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT
                 + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2
                 + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT_2));
+    m_texts.push_back(Text(m_font, "Karaoke scale",
+                Vec2(-1.0f + ProgressBarRenderer::PROGRESS_BAR_HEIGHT_2,
+                    -1.0f + 2.0f * ProgressBarRenderer::PROGRESS_BAR_HEIGHT
+                    + PlusMinusButtonsRenderer::PLUS_MINUS_BUTTON_HEIGHT
+                    + TextsRenderer::CHARACTER_BASE_HEIGHT_2),
+                Text::Alignment::Left));
     if (!m_renderer.initialize(m_karaoke, m_audio_length))
     {
         return;
@@ -128,6 +134,11 @@ const Mat4& Application::scale() const
 const std::array<PlusMinusButton, 2>& Application::scale_plus_minus_buttons() const
 {
     return m_scale_plus_minus_buttons;
+}
+
+const std::vector<Text>& Application::texts() const
+{
+    return m_texts;
 }
 
 float Application::running_time() const

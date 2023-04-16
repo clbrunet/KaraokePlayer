@@ -10,6 +10,7 @@
 #include "karaoke/Karaoke.hpp"
 #include "Audio.hpp"
 #include "graphics/PlusMinusButton.hpp"
+#include "graphics/Text.hpp"
 
 class Application
 {
@@ -31,6 +32,7 @@ public:
     const Page* current_page() const;
     const Mat4& scale() const;
     const std::array<PlusMinusButton, 2>& scale_plus_minus_buttons() const;
+    const std::vector<Text>& texts() const;
     float running_time() const;
 
 private:
@@ -53,6 +55,8 @@ private:
 
     Mat4 m_scale = Mat4::identity();
     std::array<PlusMinusButton, 2> m_scale_plus_minus_buttons;
+
+    std::vector<Text> m_texts;
 
     Renderer m_renderer;
 
